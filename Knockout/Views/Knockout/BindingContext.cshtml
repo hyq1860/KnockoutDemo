@@ -3,3 +3,47 @@
 }
 
 <h2>BindingContext（绑定上下文）</h2>
+
+<h4>$parent</h4>
+
+<div id="bindingcontext_parent">
+    <div data-bind="text: name"></div>
+
+    <div data-bind="with: manager">
+        <!-- Now we're inside a nested binding context -->
+        <span data-bind="text: name"></span><br/>
+        <span data-bind="text: $parent.name"></span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function viewModelParent() {
+        var self = this;
+        self.name = ko.observable("knockout");
+        self.manager = ko.observable({name:"管理者的名字"});
+    }
+
+    ko.applyBindings(new viewModelParent(), document.getElementById("bindingcontext_parent"));
+</script>
+
+<h4>$data+$index </h4>
+<div id="bindingcontext_data">
+    <ul data-bind="foreach: ['样品', '材料', '配件']">
+        <li>
+            <!-- ko text: $index --><!-- /ko -->
+            <span data-bind="text: $data"></span>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    ko.applyBindings(null, document.getElementById("bindingcontext_data"));
+</script>
+
+<h4>$element</h4>
+<div id="bindingcontext_element">
+    <div id="item1" data-bind="text: $element.id"></div>
+    <div id="item2" data-bind="text: $element.attributes.length"></div>
+</div>
+<script type="text/javascript">
+    ko.applyBindings(null, document.getElementById("bindingcontext_element"));
+</script>
