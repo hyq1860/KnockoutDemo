@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "ForeachBinding3";
+}
+
+<h2>ForeachBinding3</h2>
+
+<ul data-bind="foreach:people" >
+    <li>
+        <span data-bind="text:$data" ></span>
+    </li>
+</ul>
+
+
+    <script type="text/javascript">
+
+        var appViewModel = function () {
+            this.people = ko.observableArray([
+                "y-z-f",
+                "z-n",
+                 "y-z-c"
+            ]);
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

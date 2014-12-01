@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "数据绑定语法";
+}
+
+<h2>The data-bind syntax（数据绑定语法）</h2>
+
+<h4>例子1</h4>
+Today's message is: <span data-bind="text: myMessage"></span>
+
+<h4>related bindings(相关绑定):</h4>
+<!-- related bindings: valueUpdate is a parameter for value -->
+Your value: <input data-bind="value: someValue, valueUpdate: 'afterkeydown'" />
+<br/>
+
+<h4>related bindings（不相关）:</h4>
+<!-- unrelated bindings -->
+Cellphone: <input data-bind="value: cellphoneNumber, enable: hasCellphone" />
+
+<h4>variable (usually a property of the current view model：visible）</h4>
+<!-- variable (usually a property of the current view model -->
+<div data-bind="visible: shouldShowMessage">...</div>
+
+<h4>comparison and conditional(比较和条件)</h4>
+<!-- comparison and conditional -->
+苹果手机价格：<input data-bind="value:price" value="1999" /><br/>
+苹果手机比小米<span data-bind="text: price() > 1999 ? '贵' : '便宜'"></span>.
+
+<h4>function call and comparison（函数调用跟比较）</h4>
+<!-- function call and comparison -->
+<button data-bind="enable: parseAreaCode(cellphoneNumber()) != '555'">按钮enable</button>
+
+<h4>function expression（函数表达式）</h4>
+<!-- function expression -->
+<div data-bind="click: function (data) { myFunction('param1', data) }">函数表达式</div>
+
+<h4>object literal (with unquoted and quoted property names)对象属性带引号和不带引号</h4>
+<!-- object literal (with unquoted and quoted property names) -->
+<div data-bind="with: {emotion: 'happy', 'facial-expression': 'smile'}">
+    <!-- ko text: emotion -->
+    <!-- /ko -->
+    <!-- ko text: 'facial-expression' -->
+    <!-- /ko -->
+</div>
+
+<h1>
+    Skipping the binding value
+    Starting with Knockout 3.0, you can specify bindings without a value, which will give the binding an undefined value. For example:
+</h1>
+<span data-bind="text">Text that will be cleared when bindings are applied.</span>
+
+<script type="text/javascript">
+    function viewModel() {
+        var self = this;
+
+        self.myMessage = ko.observable("绑定消息");
+
+        self.someValue = ko.observable();
+
+        self.cellphoneNumber = ko.observable();
+        self.hasCellphone = ko.observable(true);
+
+        self.shouldShowMessage = ko.observable(true);
+
+        self.price = ko.observable(4999);
+        
+        self.parseAreaCode=function(arg0) {
+            return arg0;
+        }
+
+        self.myFunction=function(arg0,arg1) {
+            console.log(arg0);
+            console.log(arg1);
+        }
+
+    }
+
+    ko.applyBindings(new viewModel());
+</script>
+
+
+

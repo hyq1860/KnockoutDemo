@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "CheckboxArrayBinding";
+}
+
+<h2>CheckboxArrayBinding</h2>
+
+
+<div>
+    <input type="checkbox" value="a" data-bind="checked: CheckArray" />
+    <input type="checkbox" value="b" data-bind="checked:CheckArray" />
+    <input type="checkbox" value="c" data-bind="checked:CheckArray" />
+</div>
+<div>
+    <button type="button" data-bind="click:showChecked">show checked</button>
+</div>
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.CheckArray = ko.observableArray(['a', 'b']);
+        this.showChecked = function () {
+            alert(self.CheckArray().toString());
+        };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>
+

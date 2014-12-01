@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "ClickCounter";
+}
+
+<div class='liveExample'> 
+    
+    <div>你点击了按钮 <span data-bind='text: numberOfClicks'>&nbsp;</span> 次</div>
+     
+    <button data-bind='click: registerClick, disable: hasClickedTooManyTimes'>猛击我！</button>
+     
+    <div data-bind='visible: hasClickedTooManyTimes'>
+        点击次数过多，禁止点击
+        <button data-bind='click: resetClicks'>重置</button>
+    </div>
+        
+</div>
+<script type="text/javascript">
+    var ClickCounterViewModel = function () {
+        this.numberOfClicks = ko.observable(0);
+
+        this.registerClick = function () {
+            this.numberOfClicks(this.numberOfClicks() + 1);
+        };
+
+        this.resetClicks = function () {
+            this.numberOfClicks(0);
+        };
+
+        this.hasClickedTooManyTimes = ko.computed(function () {
+            return this.numberOfClicks() >= 2;
+        }, this);
+    };
+
+    ko.applyBindings(new ClickCounterViewModel());
+</script>

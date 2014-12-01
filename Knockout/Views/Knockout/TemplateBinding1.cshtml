@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "TemplateBinding1";
+}
+
+<h2>TemplateBinding:Rendering a named template</h2>
+
+<div data-bind="template: { name: 'person-template', data: buyer }"></div>
+<div data-bind="template: { name: 'person-template', data: seller }"></div>
+ 
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>Credits: <span data-bind="text: credits"></span></p>
+</script>
+ 
+<script type="text/javascript">
+     function MyViewModel() {
+         this.buyer = { name: '张学友', credits: 250 };
+         this.seller = { name: '刘德华', credits: 5800 };
+     }
+     ko.applyBindings(new MyViewModel());
+</script>

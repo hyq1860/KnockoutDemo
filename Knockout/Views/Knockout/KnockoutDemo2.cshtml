@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "KnockoutDemo2";
+}
+
+<span data-bind="text: firstName"></span>
+<span data-bind="text: lastName"></span>
+<input type="text" data-bind="value: fullName" />
+<span data-bind="visible:isEdit">你改动过了</span>
+
+<script type="text/javascript">
+    function AppViewModel() {
+        this.firstName = ko.observable("刘");
+        this.lastName = ko.observable("德华");
+        this.isEdit = ko.observable(false);
+        this.fullName = ko.computed({
+            read: function () {
+                return this.firstName() + " " + this.lastName();
+            },
+            write: function (value) {
+                var lastSpecPos = value.lastIndexOf(" ");
+                if (lastSpecPos > 0) {
+                    this.firstName(value.substring(0, lastSpecPos));
+                    this.lastName(value.substring(lastSpecPos + 1));
+                    this.isEdit(true);
+                } else {
+                    this.isEdit(false);
+                }
+            },
+            owner: this
+        });
+    };
+
+    ko.applyBindings(new AppViewModel());
+</script>

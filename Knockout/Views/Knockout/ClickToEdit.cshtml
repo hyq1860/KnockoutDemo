@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "点击编辑";
+}
+
+<h2>点击编辑</h2>
+
+<p>
+    姓名: 
+    <b data-bind="visible: !editing(), text: name, click: edit">&nbsp;</b>
+    <input data-bind="visible: editing, value: name, hasFocus: editing" />
+</p>
+<p><em>Click the name to edit it; click elsewhere to apply changes.</em></p>
+<input value="点我展示编辑后的数据" type="button" data-bind="click:alertInfo" />
+<script type="text/javascript">
+    function PersonViewModel(name) {
+        // Data
+        this.name = ko.observable(name);
+        this.editing = ko.observable(false);
+
+        // Behaviors
+        this.edit = function () { this.editing(true); }
+
+        this.alertInfo=function() {
+            console.log(this.name());
+            console.log(this.editing());
+        }
+    }
+
+    ko.applyBindings(new PersonViewModel("张三李四王五"));
+</script>
+
+

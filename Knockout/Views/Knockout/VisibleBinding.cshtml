@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "VisibleBinding";
+}
+
+<h2>VisibleBinding</h2>
+
+
+<span data-bind="visible:visibleState">显示了</span>
+<div>
+    <button type="button" data-bind="click:show">出现吧，我的皮卡丘</button>
+    <button type="button" data-bind="click:hide">滚粗吧，你！</button>
+</div>
+
+
+    <script type="text/javascript">
+        //绑定主要用来让我们通过监控属性可以控制html文档的显示，只要绑定的监控属性为false、0、null或者undefined则隐藏该标签，否则显示
+        var appViewModel = function () {
+            this.visibleState = ko.observable(false);
+            this.show = function () {
+                this.visibleState(true);
+            };
+            this.hide = function () {
+                this.visibleState(false);
+            }
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

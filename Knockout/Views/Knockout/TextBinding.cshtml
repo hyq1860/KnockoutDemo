@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "TextBinding";
+}
+
+<h2>TextBinding</h2>
+
+<ul data-bind="foreach:datalist">
+    <li><!--ko text:value--><!--/ko--></li>
+</ul>
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        this.datalist = ko.observableArray([{ "value": 1 }, { "value": 2 }, { "value": 3 }]);
+    }
+
+    ko.applyBindings(new appViewModel());
+    </script>

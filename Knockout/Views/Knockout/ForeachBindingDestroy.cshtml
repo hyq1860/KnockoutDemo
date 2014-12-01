@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "ForeachBindingDestroy";
+}
+
+<h2>ForeachBindingDestroy</h2>
+
+<ul>
+    <!--ko foreach:{data:people,as : 'P',includeDestroyed:false} -->
+    <li>
+        <span data-bind="text: P.Name"></span>
+        <a href="" data-bind="click: $parent.destroy">删除</a>
+    </li>
+    <!--/ko -->
+</ul>
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.people = ko.observableArray([
+            { Name: "aaaa" },
+            { Name: "bbbb" },
+            { Name: "cccc" },
+            { Name: "dddd" }
+        ]);
+        this.destroy = function () {
+            self.people.destroy(this);
+        }
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

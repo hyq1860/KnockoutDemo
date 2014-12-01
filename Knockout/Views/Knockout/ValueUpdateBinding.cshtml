@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "ValueUpdateBinding";
+}
+
+<h2>ValueUpdateBinding</h2>
+<div>
+    <input type="text" data-bind="value: realvalue,valueUpdate:'input'" />
+    <label data-bind="text: realvalue"></label>
+</div>
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.realvalue = ko.observable("");
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

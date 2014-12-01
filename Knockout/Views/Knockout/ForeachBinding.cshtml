@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ForeachBinding";
+}
+
+<h2>ForeachBinding</h2>
+<ul class="address">
+    <!-- ko with: DefaultAddress -->
+    <li class="unchecked">
+        <!--ko text:Receiver--><!--/ko-->
+        <!--ko text:Phone--><!--/ko-->
+    </li>
+    <li class="unchecked">
+        <!--ko text:ProvinceName--><!--/ko-->
+        <!--ko text:CityName--><!--/ko-->
+        <!--ko text:AreaName--><!--/ko-->
+        <!--ko text:Address--><!--/ko-->
+    </li>
+    <!--/ko-->
+</ul>
+
+<ul data-bind="foreach:people" >
+    <li ffffffff><a href="" data-bind="text:Name"></a></li>
+</ul>
+<!-- ko foreach: AddressList -->
+        <ul class="addressUl"  >
+            
+            <li class="inline liFirst"></li>
+            <li class="inline liSecond">
+                <label>
+                    <input type="radio" name="radAddress" data-bind="value: Id,click:function(data){$parent.select(data);return true;}" />
+                    <!--ko text:Receiver--><!--/ko-->
+                    <!--ko text:Phone--><!--/ko-->
+                    <!--ko text:ProvinceName--><!--/ko-->
+                    <!--ko text:CityName--><!--/ko-->
+                    <!--ko text:AreaName--><!--/ko-->
+                    <!--ko text:Address--><!--/ko-->
+                    <a data-bind="text:Address,attr:{'title':CityName}"></a>
+                </label>
+                <span class="w160 inline"></span>
+            </li>
+        </ul>
+        <!-- /ko -->  
+
+    <script type="text/javascript">
+
+        var appViewModel = function () {
+            this.people = [
+                { Name: "张三" },
+                { Name: "李四" },
+                { Name: "王五" }
+            ];
+            this.select=function(data) {
+                self.DefaultAddress(data);
+            }
+            this.AddressList = ko.observableArray([{ "Id": 43, "CustomerId": 506, "AddrProvince": "210000", "AddrCity": "210200", "AddrArea": "210202", "PostCode": "", "Address": "1111111111", "Receiver": "梅西", "Phone": "13716457768", "IsDefault": false, "CreateTime": "2014-07-09T18:13:46.54", "CreateBy": "506", "UpdateTime": "2014-07-10T10:58:36.323", "UpdateBy": "506", "IsEnable": true, "AreaName": "中山区", "CityName": "大连市", "ProvinceName": "辽宁省" }, { "Id": 41, "CustomerId": 506, "AddrProvince": "120000", "AddrCity": "120100", "AddrArea": "120101", "PostCode": "", "Address": "111", "Receiver": "马拉多拉", "Phone": "13811111111", "IsDefault": false, "CreateTime": "2014-07-09T18:09:09.757", "CreateBy": "506", "UpdateTime": "2014-07-10T10:58:36.323", "UpdateBy": "506", "IsEnable": true, "AreaName": "和平区", "CityName": "市辖区", "ProvinceName": "天津市" }, { "Id": 39, "CustomerId": 506, "AddrProvince": "130000", "AddrCity": "130200", "AddrArea": "130201", "PostCode": "", "Address": "天津巴西大使馆", "Receiver": "内马尔", "Phone": "13666668888", "IsDefault": true, "CreateTime": "2014-07-09T11:03:25.453", "CreateBy": "506", "UpdateTime": "2014-07-10T10:58:36.323", "UpdateBy": "506", "IsEnable": true, "AreaName": "市辖区", "CityName": "唐山市", "ProvinceName": "河北省" }]);
+            self.DefaultAddress = ko.observable({ "Id": 39, "CustomerId": 506, "AddrProvince": "130000", "AddrCity": "130200", "AddrArea": "130201", "PostCode": "", "Address": "天津巴西大使馆", "Receiver": "内马尔", "Phone": "13666668888", "IsDefault": true, "CreateTime": "2014-07-09T11:03:25.453", "CreateBy": "506", "UpdateTime": "2014-07-10T10:58:36.323", "UpdateBy": "506", "IsEnable": true, "AreaName": "市辖区", "CityName": "唐山市", "ProvinceName": "河北省" });
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

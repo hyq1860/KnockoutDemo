@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "UpdateOneInCollection";
+}
+
+<h2>UpdateOneInCollection</h2>
+
+
+
+<div data-bind="foreach: datas">
+    <p>
+        <span data-bind="text: n"></span>: 
+            <span data-bind="text: a"></span>
+        <button data-bind="click: $parent.click">换</button>
+    </p>
+</div>
+
+<script>
+    function ViewModel() {
+        var self = this;
+        this.datas = ko.observableArray([
+            { n: "ad", a: "yes" },
+            { n: "zs", a: "no" },
+            { n: "ls", a: "no" }
+        ]);
+        self.click = function () {
+            //拷贝当前点击对象到tmp，更改tmp需要更新的值，将this替换为tmp
+            var tmp = this.clone();
+            tmp.a = tmp.a == "yes" ? "no" : "yes";
+            self.datas.replace(this, tmp);
+        }
+    };
+    ko.applyBindings(new ViewModel());
+
+    //克隆对象
+    Object.prototype.clone = function () {
+        var obj = {};
+        for (var p in this)
+            obj[p] = this[p];
+        return obj;
+    };
+</script>

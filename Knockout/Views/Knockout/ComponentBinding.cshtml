@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "ComponentBinding";
+}
+
+<h2>ComponentBinding(组件绑定)</h2>
+
+<h4>第一个例子，不带参数</h4>
+<div data-bind='component: "message-editor"'></div>
+
+<h4>第二个例子，带参数</h4>
+<div data-bind='component: {
+    name: "message-editor",
+    params: { initialText: "Hello, world!" }
+}'></div>
+
+<h4>Using component without a container element(不带参数)</h4>
+<!-- ko component: "message-editor" -->
+<!-- /ko -->
+
+<h4>Using component without a container element(带参数)</h4>
+<!-- ko component: {
+    name: "message-editor",
+    params: { initialText: "Hello, world!", otherParam: 123 }
+} -->
+<!-- /ko -->
+
+<script type="text/javascript">
+    ko.components.register('message-editor', {
+        viewModel: function (params) {
+            this.text = ko.observable(params && params.initialText || '');
+        },
+        template: '消息: <input data-bind="value: text" /> '
+                + '(长度: <span data-bind="text: text().length"></span>)'
+    });
+
+    ko.applyBindings();
+</script>

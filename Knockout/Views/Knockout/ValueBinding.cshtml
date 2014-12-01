@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "ValueBinding";
+}
+
+<h2>ValueBinding</h2>
+<p>
+Value绑定器将会把你的视图模型中的属性与DOM元素中的value关联。可以使用于表单元素，如input、select和textarea。<br />
+    当用户修改了关联DOM元素中的值将会自动更新视图模型中关联的属性，相反如果你修改了视图模型中的属性，那么DOM元素中显示的值也会跟着变动。
+</p>
+
+<div>
+    <label for="username">username:</label>
+    <input id="username" type="text" data-bind="value: username" />
+</div>
+<div>
+    <label for="password">password:</label>
+    <input id="password" type="text" data-bind="value: password" />
+</div>
+<div>
+    <button type="button" data-bind="click: showInfo">showInfo</button>
+</div>
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.username = ko.observable("请输入");
+        this.password = ko.observable("");
+        this.showInfo = function () {
+            alert(self.username() + ":" + self.password());
+        };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>
+

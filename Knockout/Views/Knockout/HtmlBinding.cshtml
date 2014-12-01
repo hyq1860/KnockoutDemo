@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "HtmlBinding";
+}
+
+<h2>HtmlBinding</h2>
+<div data-bind="html: htmlText" >
+
+</div>
+
+
+    <script type="text/javascript">
+        var appViewModel = function () {
+            this.htmlText = ko.observable("<h1>哈哈，我们又见面了</h1>");
+        }
+        ko.applyBindings(new appViewModel());
+</script>

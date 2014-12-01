@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "CustomBinding";
+}
+
+<h2>CustomBinding:创建自己的绑定语法</h2>
+<div data-bind="customerId:Id"></div>
+<script type="text/javascript">
+    if (typeof ko != "undefined") {
+        //自定义绑定id 解决ie7 attr id的问题
+        ko.bindingHandlers.customerId = {
+            init: function (element, valueAccessor, allBindingsAccessor) {
+                var name = ko.utils.unwrapObservable(valueAccessor());
+                $(element).attr('Id', name);
+            },
+            update: function (element, valueAccessor, allBindingsAccessor) {
+                var name = ko.utils.unwrapObservable(valueAccessor());
+                $(element).attr('Id', name);
+            }
+        };
+    }
+    var model = {
+        Id: 1000
+    };
+    ko.applyBindings(model);
+</script>

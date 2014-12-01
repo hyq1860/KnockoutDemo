@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "CssBinding";
+}
+
+<h2>CssBinding</h2>
+<style type="text/css">
+    .test1 {
+        background-color: red;
+    }
+
+    .test2 {
+        background-color: green;
+    }
+</style>
+
+<div data-bind="css: cssName">
+    我会变色
+</div>
+<div>
+    <button type="button" data-bind="click: changeTest1">我变</button>
+    <button type="button" data-bind="click: changeTest2">我再变</button>
+</div>
+
+
+    <script type="text/javascript">
+
+        var appViewModel = function () {
+            this.cssName = ko.observable("");
+            this.changeTest1 = function () {
+                this.cssName("test1");
+            };
+            this.changeTest2 = function () {
+                this.cssName("test2");
+            };
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

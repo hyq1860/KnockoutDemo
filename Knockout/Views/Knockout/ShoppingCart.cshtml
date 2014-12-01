@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "knockout简介";
+}
+<div>
+    <h3>kncokout简介</h3>
+    <ul>
+        <li>官网地址：<a href="http://knockoutjs.com">http://knockoutjs.com</a></li>
+        <li>特点:</li>
+        <ul>
+            <li></li>
+            <li>纯js，服务端无关</li>
+            <li>浏览器支持版本广，尤其ie6，ie7，ie8等，不考虑他们，就是个死呀</li>
+            <li>没有第三方的依赖</li>
+            <li>文档全，易学好用，vs集成</li>
+        </ul>
+        <li>技术特性:</li>
+        <ul>
+            <li></li>
+            <li>双向绑定，自动ui刷新，追踪依赖</li>
+            <li>模板</li>
+        </ul>
+        <li>JavaScript MVVM框架:</li>
+        
+        <li><a href="http://knockoutjs.com/spec/runner.html">为何能比较放心的使用：浏览器兼容性测试</a></li>
+        
+        <li>语法简单介绍</li>
+        <li>应用场景</li>
+    </ul>
+</div>
+
+@Html.Raw(ViewBag.Href)
+    <table>
+        <thead>
+            <tr>
+                <th>商品</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:lines">
+            <tr>
+                <td data-bind="with:product">
+                    <span data-bind="text:name"></span>
+                </td>
+                <td data-bind="with:product"><span data-bind='text:formatCurrency(price)' /></td>
+                <td>
+                    <input data-bind='visible: product, value: productCount, valueUpdate: "afterkeydown"' />
+                </td>
+                <td><span data-bind="visible:product,text:formatCurrency(subtotal())"></span></td>
+                <td><a href='#' data-bind='click: $parent.removeLine'>删除</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class='grandTotal'>
+        商品总价: <span data-bind='text: grandTotal()'></span>
+    </p>
+    <button data-bind='click: addLine'>添加商品</button>
+    <script type="text/javascript">
+        function formatCurrency(value) {
+            return "￥" + value;
+        }
+        var Product = function (id, name, price) {
+            self = this;
+            self.id = id;
+            self.name = name;
+            self.price = price;
+        }
+        var CartItem = function (product) {
+            self = this;
+
+            self.product = ko.observable(product);
+            self.productCount = ko.observable(1);
+
+            self.subtotal = ko.dependentObservable(function () {
+                return this.product() ? this.product().price * parseInt("0" + this.productCount(), 10) : 0;
+            }.bind(self));
+        };
+        var CartList = function () {
+            var self = this;
+            self.lines = ko.observableArray([new CartItem(new Product(1, "test1", 100))]);
+
+            self.addLine = function () { self.lines.push(new CartItem(new Product(2, "test2", 200))) };
+
+            self.removeLine = function (line) { self.lines.remove(line) };
+
+            self.grandTotal = ko.computed(function () {
+                var total = 0;
+                $.each(self.lines(), function () { total += this.subtotal(); })
+                return total;
+            });
+        };
+        ko.applyBindings(new CartList());
+
+    </script>
+

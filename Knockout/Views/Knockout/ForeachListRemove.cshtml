@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "ForeachListRemove";
+}
+
+<h2>ForeachListRemove</h2>
+
+<ul data-bind="foreach:places">
+    <li>
+        <span data-bind="text:$data"></span>
+        <button data-bind="click: $parent.removePlace">删除</button>
+    </li>
+</ul>
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.places = ko.observableArray(['天通苑', '回龙观', '大北窑', '大通州']);
+        this.removePlace = function (data) {
+            console.log(data);
+            self.places.remove(data);
+        }
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

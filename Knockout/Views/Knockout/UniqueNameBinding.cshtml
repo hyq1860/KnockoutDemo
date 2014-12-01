@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "UniqueNameBinding";
+}
+
+<h2>UniqueNameBinding</h2>
+
+<input data-bind="value: Data, uniqueName: true" />
+
+<script type="text/javascript">
+    var appViewModel=function() {
+        var self = this;
+        self.Data = ko.observable("uniqueName");
+    }
+    ko.applyBindings(new appViewModel());
+
+</script>

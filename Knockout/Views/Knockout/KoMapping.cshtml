@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "KoMapping";
+}
+
+<h2>KoMapping</h2>
+@*http://knockoutjs.com/documentation/plugins-mapping.html*@
+<div id="model2">
+    <input type="text" data-bind="value: serverTime" />
+    <input type="text" data-bind="value: numUsers, valueUpdate: 'afterkeydown'" />
+    <input type="text" data-bind="value: realUsers" />
+</div>
+
+<script type="text/javascript">
+    var data = {
+        serverTime: '2010-01-07',
+        numUsers: 3,
+        realUsers: 3,
+    }
+    var M = ko.mapping.fromJS(data);//data对象里所有属性添加ko属性
+    M.realUsers = ko.computed(function () {
+        return M.numUsers() ? M.numUsers() * 2 : 0;
+    });
+    ko.applyBindings(M, document.getElementById("model2"));
+</script>

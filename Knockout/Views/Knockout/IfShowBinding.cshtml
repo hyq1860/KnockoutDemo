@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "IfShowBinding";
+}
+
+<h2>IfShowBinding</h2>
+
+<!--ko if:ShowFundPayModify -->
+<div>
+    <h1>终于见面了</h1>
+</div>
+<!--/ko -->
+<div>
+    <button type="button" data-bind="click:add">增加</button>
+    <button type="button" data-bind="click:subtract">减少</button>
+</div>
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        this.ShowFundPayModify = ko.observable(0);
+        this.add = function () {
+            this.ShowFundPayModify(this.ShowFundPayModify() + 1);
+            console.log(this.ShowFundPayModify());
+        };
+        this.subtract = function () {
+            this.ShowFundPayModify(this.ShowFundPayModify() - 1);
+        };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "模板";
+}
+
+<h2>TemplateBinding:Using the “foreach” option with a named template</h2>
+
+<div data-bind="template: { name: 'person-template', foreach: people }"></div>
+ 
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>信用: <span data-bind="text: credits"></span></p>
+</script>
+
+第一种用法
+<div data-bind="template: { name: 'person-template2' }"></div>
+
+第二种用法
+<script type="text/html" id="person-template2">
+<div data-bind="foreach: people">
+    <h3 data-bind="text: name"></h3>
+    <p>信用: <span data-bind="text: credits"></span></p>
+</div>
+</script>
+
+<script type="text/javascript">
+    function MyViewModel() {
+        this.people = [
+            { name: '张学友', credits: 250 },
+            { name: '刘德华', credits: 5800 }
+        ];
+    }
+    ko.applyBindings(new MyViewModel());
+</script>

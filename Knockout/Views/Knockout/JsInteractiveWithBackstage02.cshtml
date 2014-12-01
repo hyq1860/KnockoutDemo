@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "JsInteractiveWithBackstage02";
+}
+
+<h2>JsInteractiveWithBackstage02</h2>
+
+<ul data-bind="foreach: lines" >
+    <li>
+        <span data-bind="text: Code"></span>
+        <span data-bind="text: Quantity"></span>
+    </li>
+</ul>
+    <button type="button" data-bind="click: addLine">添加</button>
+<script>
+    $.getJSON("http://localhost:41868/knockout/JsInteractiveWithBackstage02Data", function (data) {
+        var product = function () {
+            // Stores an array of lines, and from these, can work out the grandTotal
+            var self = this;
+            //self.lines = ko.observableArray([new CartLine()]);
+            self.lines = ko.observableArray(data);
+            // Operations
+            self.addLine = function () { self.lines.push({Code:"1",Quantity:1}) };
+            self.removeLine = function (line) { self.lines.remove(line) };
+            
+        }
+        ko.applyBindings(new product());
+    });
+</script>

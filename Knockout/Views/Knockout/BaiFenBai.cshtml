@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "BaiFenBai";
+}
+
+<h2>BaiFenBai</h2>
+<ul class="payUl">
+    <li>
+        <span class="inline w230">预付款比例 &nbsp;&nbsp;&nbsp;<input data-bind="value: PreMoneyRate" name="r_PreMoneyRate"  type="text" class="inpCom w40 inpH20" i_value1="" i_value2="" />
+            %
+            <span id="r_PreMoney" class="inline w60 t_l" data-bind="text: PreMoney">元</span>
+        </span>
+        <span class="J_validate inline w140" name="s_rate_tip"></span>
+        <span class="inline w200">确认后 &nbsp;&nbsp;&nbsp;<input name="r_PreDay" maxlength="3" type="text" class="inpCom w40 inpH20" />
+            天内支付</span>
+        <span class="J_validate inline w140"></span>
+    </li>
+    <li>
+        <span class="inline w230">中期款比例 &nbsp;&nbsp;&nbsp;<input data-bind="value: BalanceRate" name="r_BalanceRate"  type="text" class="inpCom w40 inpH20" i_value1="" i_value2="" />
+            %
+            <span id="r_BalanceMoney" class="inline w60 t_l" data-bind="text: BalanceMoney">元</span>
+        </span>
+        <span class="J_validate inline w140" name="s_rate_tip"></span>
+        <span class="inline w200">备货后 &nbsp;&nbsp;&nbsp;<input name="r_BalanceDay" maxlength="3" type="text" class="inpCom w40 inpH20" />
+            天内支付</span>
+        <span class="J_validate inline w140"></span>
+    </li>
+    <li>
+        <span class="inline w230">尾款比例 &nbsp;&nbsp;&nbsp;<input data-bind="value: QualityRate" name="r_QualityRate" type="text" class="inpCom w40 inpH20" i_value1="" i_value2="" />
+            %
+            <span id="r_QualityMoney" class="inline w60 t_l" data-bind="text: QualityMoney">元</span>
+        </span>
+        <span class="J_validate inline w140" name="s_rate_tip"></span>
+        <span class="inline w200">交货后 &nbsp;&nbsp;&nbsp;<input name="r_QualityDay" maxlength="3" type="text" class="inpCom w40 inpH20" />
+            天内支付</span>
+        <span class="J_validate inline w140"></span>
+    </li>
+</ul>
+<div></div>
+<script type="text/javascript">
+    // 价格跟支付方式
+    function OrderPayViewModel() {
+        var self = this;
+
+        // 
+
+        // 商品总价格（不包括运费）
+        self.TotalProductMoney = ko.observable(100);
+        // 运费
+        self.Freight = ko.observable(0);
+
+        // 总价 包含运费
+        self.TotalMoney = ko.computed(function () {
+            return parseFloat(self.TotalProductMoney()) + parseFloat(self.Freight());
+        });
+
+        //分期
+        //预付款
+        self.PreMoneyRate = ko.observable(10);//比率
+        self.PreDay = ko.observable(0);//支付时间
+        //预付款
+        self.PreMoney = ko.computed(function () {
+            if (self.PreMoneyRate() > 0) {
+                return self.PreMoneyRate()/100*22;
+            } else {
+                return 0;
+            }
+        });
+
+
+        //中期款比率
+        self.BalanceRate = ko.observable(0);//比率
+        self.BalanceDay = ko.observable(0);//支付时间
+        self.BalanceMoney = ko.computed(function () {
+            if (self.BalanceRate() > 0) {
+                return self.BalanceRate() / 100 * 22;
+            } else {
+                return 0;
+            }
+        });
+        //质保金比率
+        self.QualityRate = ko.observable(0);//比率
+        self.QualityDay = ko.observable(0);//支付时间
+        self.QualityMoney = ko.computed(function () {
+            if (self.QualityRate() > 0) {
+                return self.QualityRate() / 100 * 22;
+            } else {
+                return 0;
+            }
+        });
+
+
+    }
+
+    //var M = ko.mapping.fromJS();//data对象里所有属性添加ko属性
+    //M.ShowAddressList=ko.computed(function() {
+    //    return M.DefaultAddress() == null || M.HiddenDefaultAddress() == true;
+    //});
+
+
+
+
+
+        ko.applyBindings(new OrderPayViewModel());
+
+
+</script>
+
+@*<p>First name: <input data-bind="value: firstName"/></p>
+<p>Last name: <input data-bind="value: lastName"/></p>
+<h2>Hello, <input data-bind="value: fullName"/>!</h2>
+<input data-bind="value:qq"/>
+<label data-bind="text:thick"></label>
+<script>
+    
+    function MyViewModel() {
+        var self = this;
+        self.firstName = ko.observable('Planet');
+        self.lastName = ko.observable('Earth');
+
+        self.fullName = ko.computed({
+            read: function () {
+                return self.firstName() + " " + self.lastName();
+            },
+            write: function (value) {
+                var lastSpacePos = value.lastIndexOf(" ");
+                if (lastSpacePos > 0) { // Ignore values with no space character
+                    self.firstName(value.substring(0, lastSpacePos)); // Update "firstName"
+                    self.lastName(value.substring(lastSpacePos + 1)); // Update "lastName"
+                }
+            },
+            owner: this
+        });
+        self.qq = ko.observable("1111111");
+        self.thick = ko.computed(function () {
+            return self.qq() + "jajajj" + self.lastName();
+        });
+    }
+
+    ko.applyBindings(new MyViewModel());
+</script>*@

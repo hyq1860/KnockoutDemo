@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "HelloWord";
+}
+
+@*
+例子1
+<h1>监控属性</h1>
+<p>姓：<input data-bind="value: firstName" /></p>
+<p>名字: <input data-bind="value: lastName" /></p>
+<h2>你好, <span data-bind="text: fullName"> </span>!</h2>
+<script>
+    // Here's my data model
+    var ViewModel = function (first, last) {
+        this.firstName = ko.observable(first);
+        this.lastName = ko.observable(last);
+
+        this.fullName = ko.computed(function () {
+            // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+            return this.firstName() + " " + this.lastName();
+        }, this);
+    };
+    ko.applyBindings(new ViewModel("刘","德华")); // This makes Knockout get to work
+
+    
+</script>*@
+
+<input type="text" data-bind="value: personName" />
+
+<script type="text/javascript">
+        var myViewModel = {
+            personName: ko.observable("Job"),
+            personAge: ko.observable(123)
+        };
+
+        //Knockout默认情况下，如果赋的值跟当前属性的值相同，是不会触发change事件的，但是有时我们需要让其也能够触发，那么我们可以加上如下的代码：
+        //myViewModel.personName.extend({ notify: "always" });
+
+        // 延迟
+        myViewModel.personName.extend({ rateLimit: 1000 });
+
+        myViewModel.personName.subscribe(function (oldValue) {
+            console.log("the old value is " + oldValue);
+        }, null, "beforeChange");
+
+        myViewModel.personName.subscribe(function (newValue) {
+            console.log("the new value is " + newValue);
+        });
+
+        //myViewModel.personName("Job");
+
+        //myViewModel.personName("Job");
+
+        ko.applyBindings(myViewModel);
+</script>

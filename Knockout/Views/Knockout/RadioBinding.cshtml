@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "RadioBinding";
+}
+
+<h2>RadioBinding</h2>
+
+@*<div>
+    <input type="radio" name="1" value="a" data-bind="checked: CheckEle" />
+    <input type="radio" name="1" value="b" data-bind="checked: CheckEle" />
+    <input type="radio" name="1" value="c" data-bind="checked: CheckEle" />
+</div>
+<div>
+    <button type="button" data-bind="click:showChecked">show checked</button>
+</div>*@
+
+<div>
+    <input type="radio" name="1" value="a" data-bind="checkedValue:'s', checked: CheckEle" />s<br/>
+    <input type="radio" name="1" value="b" data-bind="checkedValue: 'd', checked: CheckEle" />d<br />
+    <input type="radio" name="1" value="c" data-bind="checkedValue: 'e', checked: CheckEle" />e<br />
+</div>
+<div>
+    <button type="button" data-bind="click:showChecked">show checked</button>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.CheckEle = ko.observable('a');
+        this.showChecked = function () {
+            alert(self.CheckEle());
+        };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>
+

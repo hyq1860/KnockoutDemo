@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "IfBinding";
+}
+
+<h2>IfBinding</h2>
+
+
+    <div id="haha" data-bind="visible:count()>2">
+    <h1>终于见面了,大了<!--ko text:count --><!--/ko -->次电话了</h1>
+</div>
+
+<div>
+    <button type="button" data-bind="click:add">增加</button>
+    <button type="button" data-bind="click:subtract">减少</button>
+</div>
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        this.count = ko.observable(3);
+        this.add = function () {
+            this.count(this.count() + 1);
+            console.log(this.count());
+            if (this.count() > 2) {
+                //$("#haha").hide();
+            }
+        };
+        this.subtract = function () {
+            this.count(this.count() - 1);
+            if (this.count() <= 2) {
+                //$("#haha").show();
+            }
+        };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

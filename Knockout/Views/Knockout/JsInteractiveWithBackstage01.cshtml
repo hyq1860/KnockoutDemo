@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "JsInteractiveWithBackstage01";
+}
+@using Newtonsoft.Json
+@model IEnumerable<Knockout.Models.Product>
+
+<h2>JsInteractiveWithBackstage01</h2>
+<script type="text/javascript">
+    var json =@Html.Raw(JsonConvert.SerializeObject(Model));
+</script>

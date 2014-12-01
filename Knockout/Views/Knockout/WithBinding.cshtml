@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "WithBinding";
+}
+
+<h2>WithBinding</h2>
+<!--ko with:myArray -->
+    <div>
+        <h1>终于见面了<!--ko text:name --><!--/ko--></h1>
+    </div>
+    <!--/ko -->
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        this.myArray = { name: "1", text: "123" };
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

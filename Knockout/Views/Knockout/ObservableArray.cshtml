@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "ObservableArray";
+}
+
+<h2>ObservableArray</h2>
+<span data-bind="text: tarray"></span>
+<div>
+    <input type="text" data-bind="value: newItem" />
+    <button type="button" data-bind="click:addItem">添加</button>
+    <button type="button" data-bind="click:removeItem">移除</button>
+    <button type="button" data-bind="click:sortItem">排序</button>
+    <button type="button" data-bind="click:reverseItem">反序</button>
+</div>
+
+
+    <script type="text/javascript">
+        var myObservableArray = ko.observableArray([
+            { a: "a", b: "b" },
+            { a: "a1", b: "b1" }
+        ]);
+        console.log(myObservableArray()[0]);
+        console.log(myObservableArray()[0].a);
+        console.log(myObservableArray()[0].b);
+
+        myObservableArray.push("asd");
+
+        var appViewModel = function () {
+            this.newItem = ko.observable();
+            this.tarray = ko.observableArray();
+            this.tarray.push("aaaa");
+            this.tarray.push("bbbb");
+            this.addItem = function () {
+                this.tarray.push(this.newItem());
+                this.newItem("");
+            };
+            this.removeItem = function () {
+                this.tarray.pop();
+            };
+            this.sortItem = function () {
+                this.tarray.sort();
+            };
+            this.reverseItem = function () {
+                this.tarray.reverse();
+            };
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

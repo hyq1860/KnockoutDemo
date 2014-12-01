@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "StyleBinding";
+}
+
+<h2>StyleBinding</h2>
+
+<div data-bind="style: { backgroundColor: cssName() }">
+    我会变色
+</div>
+<div>
+    <button type="button" data-bind="click: changeTest1">我变</button>
+    <button type="button" data-bind="click: changeTest2">我再变</button>
+</div>
+
+
+    <script type="text/javascript">
+
+        var appViewModel = function () {
+            this.cssName = ko.observable("");
+            this.changeTest1 = function () {
+                this.cssName("red");
+            };
+            this.changeTest2 = function () {
+                this.cssName("green");
+            };
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

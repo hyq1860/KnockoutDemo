@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "ForeachBinding2";
+}
+
+<h2>ForeachBinding2</h2>
+
+<ul data-bind="foreach:people" >
+    <li>
+        <span data-bind="text:Name" ></span>
+        <button type="button" data-bind="click:$parent.show">点我</button>
+    </li>
+</ul>
+
+
+    <script type="text/javascript">
+
+        var appViewModel = function () {
+            this.people = ko.observableArray([
+                { Name: "张学友",Phone:"13666666666" },
+                { Name: "刘德华", Phone: "13666666666" },
+                { Name: "李四", Phone: "13666666666" }
+            ]);
+            this.show = function (data) {
+                alert(this.Name + "_" + this.Phone);
+                console.log(data);
+            }
+        }
+
+        ko.applyBindings(new appViewModel());
+</script>

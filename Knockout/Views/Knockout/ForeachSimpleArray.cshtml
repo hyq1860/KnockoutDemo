@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "ForeachSimpleArray";
+}
+
+<h2>ForeachSimpleArray</h2>
+<ul data-bind="foreach:people">
+    <li>
+        <span data-bind="text:$data"></span>
+    </li>
+</ul>
+<select data-bind="options:people"></select>
+
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        this.people = ko.observableArray([
+            "男",
+            "女",
+            "人妖"
+        ]);
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>

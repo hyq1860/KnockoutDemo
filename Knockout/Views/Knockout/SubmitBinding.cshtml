@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "SubmitBinding";
+}
+
+<h2>SubmitBinding</h2>
+<p>
+    用来绑定表单的提交事件的，当然这个绑定器可不是绑定在按钮上的，而是直接绑定到一个表单中<br/>
+    formSubmit中的formelement将指向该表单元素，当然ko默认会阻止表单的提交，如果需要取消这个默认行为，可以在函数中返回true即可。
+</p>
+
+<form action="~/Views/Home/Index" data-bind="submit: formSubmit">
+    <input type="text" name="a" />
+    <button type="submit">提交</button>
+</form>
+
+<script type="text/javascript">
+
+    var appViewModel = function () {
+        var self = this;
+        this.formSubmit = function (formelement) {
+            var t = formelement;
+        }
+    }
+
+    ko.applyBindings(new appViewModel());
+</script>
