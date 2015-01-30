@@ -27,12 +27,27 @@
 </script>
 
 <h4>$data+$index </h4>
+<style>
+    .jishu{background-color: red;}
+    .oushu{background-color: green;}
+</style>
 <div id="bindingcontext_data">
-    <ul data-bind="foreach: ['样品', '材料', '配件']">
+    <ul data-bind="foreach: ['样品', '材料', '配件','手机']">
+        <!-- ko if: $index() % 2===0 -->
         <li>
-            <!-- ko text: $index --><!-- /ko -->
-            <span data-bind="text: $data"></span>
+            <!-- ko text: $parents.length --><!-- /ko -->
+            
+            <span data-bind="text: $data,css: { jishu: $index() % 2 === 0 }"></span>
         </li>
+        <!-- /ko -->
+        <!-- ko ifnot: $index() % 2===0 -->
+        <li>
+            <!-- ko text: $parents.length --><!-- /ko -->
+            <!-- ko text: $index --><!-- /ko -->
+            <span data-bind="text: $data,css: { oushu: $index() % 2 !== 0 }"></span>
+        </li>
+        <!-- /ko -->
+        
     </ul>
 </div>
 <script type="text/javascript">
