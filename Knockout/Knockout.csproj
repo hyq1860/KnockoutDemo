@@ -270,6 +270,7 @@
     <Content Include="Views\Knockout\ComponentBinding.cshtml" />
     <Content Include="Views\Knockout\TheDataBindSyntax.cshtml" />
     <Content Include="Views\Knockout\BindingContext.cshtml" />
+    <Content Include="Views\Knockout\BindSame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

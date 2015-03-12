@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "BindSame";
+}
+<div data-bind="with:BaseModel">
+    <span data-bind="text:CompanyName"></span>
+    <span data-bind="text:CompanyName"></span>
+</div>
+<h2>BindSame</h2>
+<script>
+    var BaseModel = {
+        CompanyName: ko.observable("1111111111")
+
+    };
+    ko.applyBindings(BaseModel);
+
+</script>
+
