@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "ko的扩展";
+}
+
+<h2>ko的扩展</h2>
+
+<div data-bind="text: myValue"></div>
+<div data-bind="text: myValue2"></div>
+<br />
+<br />
+<div data-bind="numericText: myValue3"></div>
+<div data-bind="numericText: myValue3, precision: 3"></div>
+<div data-bind="numericText: myValue3, precision: myPrecision"></div>
+<input data-bind="value: myPrecision" />
+<br />
+<br />
+<div data-bind="text: myValue"></div>
+<div data-bind="text: myValue2"></div>
+
+<script type="text/javascript">
+    function formattedNumericObservable(initialValue, precision) {
+        var _raw = ko.observable(initialValue),
+            precision = precision || formattedNumericObservable.defaultPrecision,
+            //the dependentObservable that we will return
+            result = ko.dependentObservable({
+                read: function () {
+                    return _raw().toFixed(precision);
+                },
+                write: _raw
+            });
+
+        //expose raw value (if necessary) for binding
+        result.raw = _raw;
+
+        return result;
+    }
+
+    formattedNumericObservable.defaultPrecision = 1;
+
+    ko.bindingHandlers.numericText = {
+        update: function (element, valueAccessor, allBindingsAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor()),
+                precision = ko.utils.unwrapObservable(allBindingsAccessor().precision) || ko.bindingHandlers.numericText.defaultPrecision,
+                formattedValue = value.toFixed(precision);
+
+            ko.bindingHandlers.text.update(element, function () { return formattedValue; });
+        },
+        defaultPrecision: 1
+    };
+
+    ko.extenders.numeric = function (target, precision) {
+        var result = ko.dependentObservable({
+            read: function () {
+                return target().toFixed(precision);
+            },
+            write: target
+        });
+
+        result.raw = target;
+        return result;
+    };
+
+
+    var viewModel = {
+        myValue: ko.observable(123.55454).extend({ numeric: 1 }),
+        myValue2: ko.observable(222.1234).extend({ numeric: 3 }),
+    };
+
+    var viewModel = {
+        myValue: formattedNumericObservable(123),
+        myValue2: formattedNumericObservable(222.1234, 3),
+        myValue3: ko.observable(123.55454),
+        myValue4: ko.observable(123.55454).extend({ numeric: 1 }),
+        myValue5: ko.observable(222.1234).extend({ numeric: 3 }),
+        myPrecision: ko.observable(4)
+    };
+
+    ko.applyBindings(viewModel);
+</script>
+

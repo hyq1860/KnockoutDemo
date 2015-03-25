@@ -310,5 +310,10 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult KnockoutExtension()
+        {
+            return View();
+        }
     }
 }

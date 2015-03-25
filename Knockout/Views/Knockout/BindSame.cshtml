@@ -2,9 +2,10 @@
     ViewBag.Title = "BindSame";
 }
 <div data-bind="with:BaseModel">
-    <span data-bind="text:CompanyName"></span>
+    <span><input data-bind="textInput:CompanyName" /></span>
     <span data-bind="text:CompanyName"></span>
 </div>
+<span data-bind="text:CompanyName"></span>
 <h2>BindSame</h2>
 <script>
     var BaseModel = {
