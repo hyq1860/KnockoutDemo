@@ -16,7 +16,7 @@
         <span data-bind="text: $parent.name"></span>
     </div>
 </div>
-
+//http://stackoverflow.com/questions/15271906/how-to-access-size-of-foreach-binding-in-knockout-js
 <script type="text/javascript">
     function viewModelParent() {
         var self = this;
@@ -34,22 +34,22 @@
 </style>
 <div id="bindingcontext_data">
     <ul data-bind="foreach: ['样品', '材料', '配件','手机']">
-        <!-- ko if: $index() % 2===0 -->
-        <li>
-            <!-- ko text: $parents.length --><!-- /ko -->
-            
-            <span data-bind="text: $data,css: { jishu: $index() % 2 === 0 }"></span>
-        </li>
-        <!-- /ko -->
-        <!-- ko ifnot: $index() % 2===0 -->
-        <li>
-            <!-- ko text: $parents.length --><!-- /ko -->
-            <!-- ko text: $index --><!-- /ko -->
-            <span data-bind="text: $data,css: { oushu: $index() % 2 !== 0 }"></span>
-        </li>
-        <!-- /ko -->
-        
-    </ul>
+        <span data-bind='text: children().length'></span>
+            <!-- ko if: $index() % 2===0 -->
+            <li>
+
+                <span data-bind="text: $data,css: { jishu: $index() % 2 === 0 }"></span>
+            </li>
+            <!-- /ko -->
+            <!-- ko ifnot: $index() % 2===0 -->
+            <li>
+                <!-- ko text: $parents.length --><!-- /ko -->
+                <!-- ko text: $index --><!-- /ko -->
+                <span data-bind="text: $data,css: { oushu: $index() % 2 !== 0 }"></span>
+            </li>
+            <!-- /ko -->
+
+</ul>
 </div>
 <script type="text/javascript">
     ko.applyBindings(null, document.getElementById("bindingcontext_data"));
@@ -64,3 +64,6 @@
 <script type="text/javascript">
     ko.applyBindings(null, document.getElementById("bindingcontext_element"));
 </script>
+
+
+@*css:{commonBox_mys_last:$index()==($parent.Items().length-1),commonBox_mys:$index()!=($parent.Items().length-1)}*@
