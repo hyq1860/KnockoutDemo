@@ -5,6 +5,9 @@
 <h2>AttrBinding</h2>
 
 <a data-bind="attr:{href:doHref}">快点我:我的href属性为<!--ko text:doHref --><!--/ko--></a>
+
+@*http://stackoverflow.com/questions/11304013/using-attr-binding-in-knockout-with-a-boolean-value*@
+<a data-bind="attr:{href: true ? 'orderlist.html?t=4' : ''}"></a>
 <div>
     <button type="button" data-bind="click:changeTest1">换地址1</button>
     <button type="button" data-bind="click:changeTest2">换地址2</button>
