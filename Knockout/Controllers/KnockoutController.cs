@@ -320,5 +320,16 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+
+        public ActionResult DirectorStart01()
+        {
+            return View();
+        }
+
+        public ActionResult DirectorStart02()
+        {
+            return View();
+        }
     }
 }
