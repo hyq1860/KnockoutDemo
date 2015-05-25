@@ -272,6 +272,7 @@
     <Content Include="Views\Knockout\BindingContext.cshtml" />
     <Content Include="Views\Knockout\BindSame.cshtml" />
     <Content Include="Views\Knockout\KnockoutExtension.cshtml" />
+    <Content Include="Views\Knockout\ScrollToButtom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -315,5 +315,10 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult ScrollToButtom()
+        {
+            return View();
+        }
     }
 }
