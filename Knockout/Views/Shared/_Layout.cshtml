@@ -4,17 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @Styles.Render("http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css")
     @Styles.Render("~/Content/css")
-@*    @Scripts.Render("~/bundles/modernizr")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/scripts/knockout-3.3.0.js")
-    @Scripts.Render("~/scripts/knockout.mapping-latest.js")
-
-    @Scripts.Render("~/scripts/director.min.js")
+    @Scripts.Render("http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    @{
+        var controlller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+        var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+        switch (controlller)
+        {
+            case "knockout":
+                @Scripts.Render("~/scripts/knockout-3.3.0.js");
+                @Scripts.Render("~/scripts/knockout.mapping-latest.js");
+                break;
+            case "iscroll":
+                @Scripts.Render("~/Scripts/iscroll/iscroll-probe.js");
+                break;
+            case "swiper":
+                @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/css/swiper.min.css");
+                @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/js/swiper.min.js");
+                break;
+            case "director":
+                @Scripts.Render("~/scripts/director.min.js")
+                break;
+        }
+}
 </head>
-<body>
+<body role="document">
     @RenderBody()
-
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -130,8 +130,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BootstrapController.cs" />
     <Compile Include="Controllers\ControllerActionCollector.cs" />
+    <Compile Include="Controllers\DirectorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\iScrollController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
+    <Compile Include="Controllers\SwiperController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,10 +201,16 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\director.min.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\iscroll\iscroll-infinite.js" />
+    <Content Include="Scripts\iscroll\iscroll-lite.js" />
+    <Content Include="Scripts\iscroll\iscroll-probe.js" />
+    <Content Include="Scripts\iscroll\iscroll-zoom.js" />
+    <Content Include="Scripts\iscroll\iscroll.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -276,6 +288,13 @@
     <Content Include="Views\Knockout\ScrollToButtom.cshtml" />
     <Content Include="Views\Knockout\DirectorStart01.cshtml" />
     <Content Include="Views\Knockout\DirectorStart02.cshtml" />
+    <Content Include="Views\IScroll\IScrollV5.cshtml" />
+    <Content Include="Views\Knockout\Index.cshtml" />
+    <Content Include="Views\IScroll\Index.cshtml" />
+    <Content Include="Views\Swiper\Index.cshtml" />
+    <Content Include="Views\Bootstrap\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Director\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

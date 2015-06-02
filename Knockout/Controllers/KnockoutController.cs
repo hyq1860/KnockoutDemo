@@ -8,7 +8,7 @@ namespace Knockout.Controllers
 {
     using Knockout.Models;
 
-    public class KnockoutController : Controller
+    public class KnockoutController : BaseController
     {
         //
         // GET: /Knockout/

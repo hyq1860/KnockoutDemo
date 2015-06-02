@@ -28,6 +28,7 @@ namespace Knockout.Controllers
             foreach (var t in GetSubClasses<Controller>())
             {
                 var controllerFunction = t.GetCustomAttributes(true);
+                
                 var controller = t.Name.Replace("Controller","");
                 List<MethodInfo> mfCollection = GetSubMethods(t);
                 
