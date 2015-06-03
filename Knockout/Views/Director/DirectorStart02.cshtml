@@ -13,10 +13,9 @@
 
       var allroutes = function() {
         var route = window.location.hash.slice(2);
-        var sections = $('section');
-        var section;
-
-        section = sections.filter('[data-route=' + route + ']');
+        var sections = $('.data');
+        //筛选出有路由的
+        var section= sections.filter('[data-route=' + route + ']');
 
         if (section.length) {
           sections.hide(250);
@@ -50,8 +49,8 @@
 @*http://www.cnblogs.com/Showshare/p/director-chinese-tutorial.html
     https://github.com/jesselew/SpaDemo/
 *@
-    <section data-route="author">Author Name</section>
-    <section data-route="books">Book1, Book2, Book3</section>
+    <div class="data" data-route="author">Author Name</div>
+    <div class="data" data-route="books">Book1, Book2, Book3</div>
     <ul>
         <li><a href="#/author">#/author</a></li>
         <li><a href="#/books">#/books</a></li>

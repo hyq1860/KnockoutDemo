@@ -13,7 +13,13 @@ namespace Knockout.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Href = ControllerActionCollector.GetControllerNames();
+            var controller = ControllerContext.Controller;
+            var controllerType = controller.GetType();
+            if (controllerType != null && !string.IsNullOrEmpty(controllerType.Name))
+            {
+                ViewBag.AutoHtml = ControllerActionCollector.GetControllerNames(controllerType.Name);
+            }
+            
             return View();
         }
 

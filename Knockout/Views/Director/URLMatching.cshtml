@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "URLMatching";
+}
+
+<h2>URLMatching</h2>
+<a href="#/dog/123">获取js路由参数</a>
+
+<script type="text/javascript">
+    $(function() {
+        var router = new Router({
+            '/dog': {
+                '/:color': {
+                    on: function (color) {
+                        console.log(color);
+                    }
+                }
+            }
+        });
+        router.init();
+    });
+    
+</script>

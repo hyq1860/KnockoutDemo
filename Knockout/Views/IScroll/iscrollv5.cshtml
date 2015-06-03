@@ -21,16 +21,25 @@
             var down = false;
             myScroll.on('scroll', function() {
                 if (this.y > 5) {
-                    alert("下拉刷新");
+                    //alert("下拉刷新");
                     //myScroll.refresh();
+                    up = true;
                 }
                 else if (this.y < (this.maxScrollY - 5)) {
-                    alert("上拉刷新");
+                    //alert("上拉刷新");
                     //myScroll.refresh();
+                    down = true;
                 }
             });
-            myScroll.on('scrollEnd', function() {
-                
+            myScroll.on('scrollEnd', function () {
+                if (up) {
+                    up = false;
+                    console.log("下拉刷新");
+                }
+                if (down) {
+                    down = false;
+                    console.log("上拉刷新");
+                }
             });
         });
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
@@ -101,13 +110,13 @@
             }
 
             #scroller li {
-                padding: 0 10px;
+                /*padding: 0 10px;
                 height: 40px;
                 line-height: 40px;
                 border-bottom: 1px solid #ccc;
                 border-top: 1px solid #fff;
                 background-color: #fafafa;
-                font-size: 14px;
+                font-size: 14px;*/
             }
 
         #monitor {

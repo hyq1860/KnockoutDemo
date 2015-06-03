@@ -15,7 +15,7 @@ namespace Knockout.Controllers
 
         public ActionResult ShoppingCart()
         {
-            ViewBag.Href= ControllerActionCollector.GetControllerNames();
+            ViewBag.AutoHtml= ControllerActionCollector.GetControllerNames();
             return View();
         }
 
@@ -321,15 +321,5 @@ namespace Knockout.Controllers
             return View();
         }
 
-
-        public ActionResult DirectorStart01()
-        {
-            return View();
-        }
-
-        public ActionResult DirectorStart02()
-        {
-            return View();
-        }
     }
 }

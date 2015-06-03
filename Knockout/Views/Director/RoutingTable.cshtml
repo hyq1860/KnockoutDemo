@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "RoutingTable";
+}
+
+<h2>RoutingTable</h2>
+
+<a href="#/dog">dog</a>
+
+<a href="#/cat">cat</a>
+
+<script type="text/javascript">
+
+    function func01() {
+        console.log("func01执行了");
+    }
+
+    function func02() {
+        console.log("func02执行了");
+    }
+
+    $(function() {
+        var routes = {
+            '/dog': function () {
+                console.log("route dog执行了");
+            },
+            '/cat': [func01, func02]
+        };
+        var router = Router(routes);
+        router.init();
+    });
+
+    
+</script>

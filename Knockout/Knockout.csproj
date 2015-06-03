@@ -286,8 +286,8 @@
     <Content Include="Views\Knockout\BindSame.cshtml" />
     <Content Include="Views\Knockout\KnockoutExtension.cshtml" />
     <Content Include="Views\Knockout\ScrollToButtom.cshtml" />
-    <Content Include="Views\Knockout\DirectorStart01.cshtml" />
-    <Content Include="Views\Knockout\DirectorStart02.cshtml" />
+    <Content Include="Views\Director\DirectorStart01.cshtml" />
+    <Content Include="Views\Director\DirectorStart02.cshtml" />
     <Content Include="Views\IScroll\IScrollV5.cshtml" />
     <Content Include="Views\Knockout\Index.cshtml" />
     <Content Include="Views\IScroll\Index.cshtml" />
@@ -295,6 +295,10 @@
     <Content Include="Views\Bootstrap\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Director\Index.cshtml" />
+    <Content Include="Views\Director\RoutingTable.cshtml" />
+    <Content Include="Views\Director\AdhocRouting.cshtml" />
+    <Content Include="Views\Director\ScopedRouting.cshtml" />
+    <Content Include="Views\Director\URLMatching.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

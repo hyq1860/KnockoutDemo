@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "AdhocRouting";
+}
+
+<h2>AdhocRouting 特定的路由</h2>
+
+<a href="#/some/resource">猛击我测试看路由生效了么</a>
+
+@*<input type="button" value="动态增加路由" id="dynamicAddRoute"/>*@
+
+<script type="text/javascript">
+    $(function() {
+        var router = new Router().init();
+
+        //大型程序无法再一个地方定义路由 所以有这个需求
+        router.on('/some/resource', function () {
+            //
+            // Do something on `/#/some/resource`
+            //
+            console.log("/some/resource");
+        });
+
+        //$("#dynamicAddRoute").on("click",function() {
+            
+        //});
+    });
+</script>

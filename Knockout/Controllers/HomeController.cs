@@ -10,7 +10,7 @@ namespace Knockout.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Href = ControllerActionCollector.GetControllerNames();
+            ViewBag.AutoHtml = ControllerActionCollector.GetControllerNames();
             return View();
         }
     }
