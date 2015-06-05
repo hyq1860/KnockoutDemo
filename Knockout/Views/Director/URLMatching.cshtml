@@ -2,19 +2,38 @@
     ViewBag.Title = "URLMatching";
 }
 
-<h2>URLMatching</h2>
-<a href="#/dog/123">获取js路由参数</a>
+<h2>URLMatching：URL匹配</h2>
+<a href="#/product/123">获取js路由参数</a> <br/>
+
+<a href="#/hello/123">获取js路由参数:正则匹配</a> <br />
+
+<a href="#/hello/tom">获取js路由参数:正则不匹配</a> <br />
 
 <script type="text/javascript">
     $(function() {
         var router = new Router({
-            '/dog': {
-                '/:color': {
-                    on: function (color) {
-                        console.log(color);
+            '/product': {
+                '/:id': {
+                    before:function(id) {
+                        console.log("我在路由命中之前执行");
+                    },
+                    on: function (id) {
+                        console.log(id);
+                    },
+                    after: function () {
+                        console.log("我在路由命中之后执行（仅仅客户端有效）");
+                    }
+                }
+            },
+            '/hello': {
+                '/(\\w+)': {
+                    on: function (regex) {
+                        console.log(regex);
                     }
                 }
             }
+
+            
         });
         router.init();
     });
