@@ -9,12 +9,13 @@
     @*@Scripts.Render("~/bundles/modernizr")*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    <script src="~/Scripts/require.js" data-main="/Scripts/main" defer async="true"></script>
     @{
         var controlller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
         var action = ViewContext.RouteData.Values["action"].ToString().ToLower();
         switch (controlller)
         {
-            case "knockout":
+            @*case "knockout":
                 @Scripts.Render("~/scripts/knockout-3.3.0.js");
                 @Scripts.Render("~/scripts/knockout.mapping-latest.js");
                 break;
@@ -28,6 +29,10 @@
             case "director":
                 @Scripts.Render("~/scripts/director.min.js")
                 break;
+            case "require":
+                <script src="~/Scripts/require.js" data-main="Scripts/main" defer async="true"></script>
+                @Scripts.Render("~/Scripts/text.js");
+                break;*@
         }
 }
 </head>

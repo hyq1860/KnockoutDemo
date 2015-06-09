@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iScrollController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
+    <Compile Include="Controllers\RequireController.cs" />
     <Compile Include="Controllers\SwiperController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -223,7 +224,11 @@
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\text.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -299,6 +304,8 @@
     <Content Include="Views\Director\AdhocRouting.cshtml" />
     <Content Include="Views\Director\ScopedRouting.cshtml" />
     <Content Include="Views\Director\URLMatching.cshtml" />
+    <Content Include="Views\Require\Index.cshtml" />
+    <Content Include="Views\Require\RequireTextPlugIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
