@@ -8,12 +8,12 @@
 
 });
 
-require(['jquery','text'], function ($,requireText) {
+//require(['jquery','text'], function ($,requireText) {
 
-    // some code here
-    console.log($("body").html());
+//    // some code here
+//    //console.log($("body").html());
 
-    require(['text!' +"/home/index"], function (content) {
-        console.log(content);
-    });
-});
+//    //require(['text!' +"/home/index"], function (content) {
+//    //    console.log(content);
+//    //});
+//});

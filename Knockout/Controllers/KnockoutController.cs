@@ -321,5 +321,15 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult MicroStoreDemo()
+        {
+            return View();
+        }
+
+        public ActionResult MicroStoreModuleDemo()
+        {
+            return View();
+        }
+
     }
 }

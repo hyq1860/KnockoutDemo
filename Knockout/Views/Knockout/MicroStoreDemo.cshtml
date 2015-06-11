@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "微店编辑示例";
+}
+
+<h2>@ViewBag.Title</h2>
+<style type="text/css">
+    .smallline { font-size: 20px; }
+    .bigline { font-size: 40px; }
+</style>
+<div id="SpiltLine">
+
+
+    <div>
+        展示区域:
+
+        <div data-bind="style:{color:Color},css: Style">我是伟大的分割线</div>
+    </div>
+
+
+    选择样式：<br />
+    <input name="LineStyle" type="radio" value="smallline" data-bind="checked: Style" />细线
+    <br />
+    <input name="LineStyle" type="radio" value="bigline" data-bind="checked: Style" />粗线
+    <br />
+    选择颜色：<br />
+    <input name="LineColor" type="radio" value="red" data-bind="checked: Color" />红色
+    <br />
+    <input name="LineColor" type="radio" value="green" data-bind="checked: Color" />绿色
+
+    <input type="button" data-bind="click:Save" value="保存模块" />
+
+</div>
+
+<script type="text/javascript">
+    function Line() {
+        var self = this;
+
+        //self.StyleArray = ko.observableArray([{ Id: 1, Html: '<span>线1</span>' }, { Id: 1, Html: '<span>线2</span>' }]);
+
+        //self.Colors = ko.observableArray([{ ColorId: 1, CssName: 'green' }, { ColorId: 2, CssName: 'red' }]);
+
+        self.Style = ko.observable("smallline");
+        self.Color = ko.observable("green");
+        self.Save=function() {
+            var data = ko.toJSON(self);
+
+            console.log(data);
+        }
+    }
+
+    $(function() {
+        ko.applyBindings(new Line(), document.getElementById("SpiltLine"));
+    });
+</script>

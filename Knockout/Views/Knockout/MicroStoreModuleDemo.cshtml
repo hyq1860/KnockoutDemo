@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "微店模块探索";
+}
+
+<h2>@ViewBag.Title</h2>
+<script type="text/javascript">
+    function ModuleList() {
+        var self = this;
+
+        self.Modules = ko.observableArray([]);
+        self.Number = ko.observable(1000);//此值可以考虑去UserId之类的组合
+        //增加模块
+        self.AddModule = function () {
+            var newModule = new Module();
+            var moduleId = self.Number() + 1;
+            //为了下一次递增做准备
+            self.Number(moduleId);
+            newModule.ModuleName("我的模块" + moduleId.toString());
+            self.Modules.push(newModule);
+        }
+
+        self.DeleteModule=function(item) {
+            self.Modules.remove(item);
+        }
+
+        self.EditModule = function (item) {
+            if (!item.IsBinding()) {
+                //填充html ko绑定
+                var html = "<div><!--ko text:ModuleName--><!--/ko--><div>";
+                //$("#EditModeContainer").html("<div class=" + item.ModuleId() + ">" + html + "</div>");
+
+                $("#" + item.ModuleId()).append("<div class=" + item.ModuleId() + ">" + html + "</div>");
+
+                ko.applyBindings(item, document.getElementById(item.ModuleId()));
+                item.IsBinding(true);
+            }
+            
+        }
+    }
+
+    function Module() {
+        var self = this;
+
+        //模块id编号
+        self.ModuleId = ko.observable();
+
+        //模块类型
+        self.ModuleType = ko.observable();
+
+        //模块名称
+        self.ModuleName = ko.observable();
+
+        //模块是否已经绑定过
+        self.IsBinding = ko.observable(false);
+
+    }
+
+    $(function () {
+        console.log("执行了么");
+        ko.applyBindings(new ModuleList());//, document.getElementById("container")
+    });
+</script>
+
+
+<div id="container">
+    <div style="border: 1px solid #3cb371" data-bind="click:AddModule">+</div>
+    <div data-bind="foreach:Modules">
+
+        <div data-bind="attr:{Id:'Module_'+ModuleId}">
+            <h1><!--ko text:ModuleName--><!--/ko--></h1>
+            <input type="button" value="删除" data-bind="click:$parent.DeleteModule"/>
+            <input type="button" value="编辑" data-bind="click:$parent.EditModule"/>
+        </div>
+    </div>
+</div>
+
+
+<div id="EditModeContainer"></div>

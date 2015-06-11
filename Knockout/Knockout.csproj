@@ -306,6 +306,8 @@
     <Content Include="Views\Director\URLMatching.cshtml" />
     <Content Include="Views\Require\Index.cshtml" />
     <Content Include="Views\Require\RequireTextPlugIn.cshtml" />
+    <Content Include="Views\Knockout\MicroStoreDemo.cshtml" />
+    <Content Include="Views\Knockout\MicroStoreModuleDemo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
