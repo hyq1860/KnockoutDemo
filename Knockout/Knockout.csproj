@@ -134,11 +134,15 @@
     <Compile Include="Controllers\BootstrapController.cs" />
     <Compile Include="Controllers\ControllerActionCollector.cs" />
     <Compile Include="Controllers\DirectorController.cs" />
+    <Compile Include="Controllers\FineUploader.cs" />
+    <Compile Include="Controllers\FineUploaderController.cs" />
+    <Compile Include="Controllers\FineUploaderResult.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iScrollController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
     <Compile Include="Controllers\RequireController.cs" />
     <Compile Include="Controllers\SwiperController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fine-uploader-new.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -203,6 +208,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\director.min.js" />
+    <Content Include="Scripts\fine-uploader.min.js" />
     <Content Include="Scripts\iscroll\iscroll-infinite.js" />
     <Content Include="Scripts\iscroll\iscroll-lite.js" />
     <Content Include="Scripts\iscroll\iscroll-probe.js" />
@@ -230,6 +236,7 @@
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\FineUploader\1.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -308,6 +315,8 @@
     <Content Include="Views\Require\RequireTextPlugIn.cshtml" />
     <Content Include="Views\Knockout\MicroStoreDemo.cshtml" />
     <Content Include="Views\Knockout\MicroStoreModuleDemo.cshtml" />
+    <Content Include="Views\FineUploader\Index.cshtml" />
+    <Content Include="Views\FineUploader\FineUploaderCore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

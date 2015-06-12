@@ -1,0 +1,13 @@
+﻿ajax上传组件
+
+http://www.gruntjs.net/getting-started
+
+npm update -g npm
+
+npm install -g grunt-cli
+
+grunt 
+
+https://github.com/FineUploader/server-examples
+
+http://docs.fineuploader.com/contributing.html
