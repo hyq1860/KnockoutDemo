@@ -7,13 +7,25 @@
     .smallline { font-size: 20px; }
     .bigline { font-size: 40px; }
 </style>
+
+<input type="button" value="其它组件跟knockout交互" id="koInteraction" />
+
 <div id="SpiltLine">
 
 
     <div>
         展示区域:
 
-        <div data-bind="style:{color:Color},css: Style">我是伟大的分割线</div>
+        <div data-bind="style:{color:Color},css: Style"><!--ko text:Title--><!--/ko--></div>
+
+        <ul data-bind="foreach:Products">
+            <li>
+                <img data-bind="attr:{src:ProductImageUrl}"/>
+                商品名称：<!--ko text:ProductName--><!--/ko-->
+                价格：<!--ko text:Price--><!--/ko-->
+                销售量：<!--ko text:SaleCount--><!--/ko-->
+            </li>
+        </ul>
     </div>
 
 
@@ -25,8 +37,11 @@
     选择颜色：<br />
     <input name="LineColor" type="radio" value="red" data-bind="checked: Color" />红色
     <br />
-    <input name="LineColor" type="radio" value="green" data-bind="checked: Color" />绿色
-
+    <input name="LineColor" type="radio" value="green" data-bind="checked: Color"/>绿色
+    <br/>
+    标题文字：
+    <input type="text" data-bind="textInput:Title"/>
+    <br/>
     <input type="button" data-bind="click:Save" value="保存模块" />
 
 </div>
@@ -41,14 +56,51 @@
 
         self.Style = ko.observable("smallline");
         self.Color = ko.observable("green");
+        //保存
         self.Save=function() {
             var data = ko.toJSON(self);
 
             console.log(data);
         }
+        //新增商品
+        self.AddProducts=function(item) {
+            self.Products.push({ ProductName: '111111', Price: 100, SaleCount: 888, ProductImageUrl: 'http://img14.360buyimg.com/n5/jfs/t565/106/474238143/55143/3e982d74/546c4b37N617fa126.jpg' });
+            self.Products.push({ ProductName: '111112', Price: 120, SaleCount: 988, ProductImageUrl: 'http://img14.360buyimg.com/n5/jfs/t565/106/474238143/55143/3e982d74/546c4b37N617fa126.jpg' });
+        }
+
+        //数据源
+        //标题
+        self.Title = ko.observable("默认标题");
+
+        //链接
+        self.Href = ko.observable();
+
+        //商品集合
+        self.Products = ko.observableArray([]);
     }
 
-    $(function() {
-        ko.applyBindings(new Line(), document.getElementById("SpiltLine"));
+    //function LineDataModel() {
+    //    var self = this;
+
+    //    //标题
+    //    self.Title = ko.observable();
+
+    //    //链接
+    //    self.Href = ko.observable();
+
+    //    //商品集合
+    //    self.Products = ko.observableArray();
+    //}
+
+    $(function () {
+        var lineModel = new Line();
+        lineModel.Products.push({ ProductName: '111111', Price: 100, SaleCount: 888, ProductImageUrl: 'http://img14.360buyimg.com/n5/jfs/t565/106/474238143/55143/3e982d74/546c4b37N617fa126.jpg' });
+        lineModel.Products.push({ ProductName: '111112', Price: 199, SaleCount: 988, ProductImageUrl: 'http://img14.360buyimg.com/n5/jfs/t565/106/474238143/55143/3e982d74/546c4b37N617fa126.jpg' });
+        ko.applyBindings(lineModel, document.getElementById("SpiltLine"));
+
+        //其它组件跟ko的交互
+        $("#koInteraction").on("click", function() {
+            lineModel.Products.push({ ProductName: '111111', Price: 100, SaleCount: 888, ProductImageUrl: 'http://img14.360buyimg.com/n5/jfs/t565/106/474238143/55143/3e982d74/546c4b37N617fa126.jpg' });
+        });
     });
 </script>

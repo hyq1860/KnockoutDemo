@@ -9,13 +9,23 @@
 
         self.Modules = ko.observableArray([]);
         self.Number = ko.observable(1000);//此值可以考虑去UserId之类的组合
+        self.ModuleType = ko.observable(1);
         //增加模块
-        self.AddModule = function () {
+        self.AddModule = function (type) {
+
+            //填出模块选择框
+
+            //选择模块后 传值给模块
+
             var newModule = new Module();
             var moduleId = self.Number() + 1;
             //为了下一次递增做准备
             self.Number(moduleId);
+            newModule.ModuleId(moduleId);
+            newModule.ModuleType(self.ModuleType());
+            self.ModuleType(2);
             newModule.ModuleName("我的模块" + moduleId.toString());
+            
             self.Modules.push(newModule);
         }
 
@@ -23,17 +33,31 @@
             self.Modules.remove(item);
         }
 
-        self.EditModule = function (item) {
-            if (!item.IsBinding()) {
-                //填充html ko绑定
-                var html = "<div><!--ko text:ModuleName--><!--/ko--><div>";
-                //$("#EditModeContainer").html("<div class=" + item.ModuleId() + ">" + html + "</div>");
+        self.EditModule = function (item,event) {
 
-                $("#" + item.ModuleId()).append("<div class=" + item.ModuleId() + ">" + html + "</div>");
+            //获取当前点击的位置 用来计算绝对定位 右侧的浮动编辑框
+            console.log(event);
+
+            var html = "";
+            //填充html ko绑定
+            if (item.ModuleType() == 1) {
+                html = "<div><!--ko text:ModuleName--><!--/ko--><div>";
+            }
+            else if (item.ModuleType() == 2) {
+                html = "<h1><!--ko text:ModuleName--><!--/ko--><h1>";
+            }
+            //console.log(item.ModuleId());
+
+            $("#EditModeContainer").html("<div id=" + item.ModuleId() + ">" + html + "</div>");
+
+            //if (!item.IsBinding()) {
+                
+
+                //$("#" + item.ModuleId()).append("<div class=" + item.ModuleId() + ">" + html + "</div>");
 
                 ko.applyBindings(item, document.getElementById(item.ModuleId()));
                 item.IsBinding(true);
-            }
+            //}
             
         }
     }
@@ -50,18 +74,27 @@
         //模块名称
         self.ModuleName = ko.observable();
 
+        //当前模块是否保存过
+        self.IsSave = false;
+
         //模块是否已经绑定过
         self.IsBinding = ko.observable(false);
+
 
     }
 
     $(function () {
         console.log("执行了么");
-        ko.applyBindings(new ModuleList());//, document.getElementById("container")
+        var moduleList=new ModuleList();
+        ko.applyBindings(moduleList);//, document.getElementById("container")
+
+        $("#koInteraction").on("click",function() {
+
+        });
     });
 </script>
 
-
+<input type="button" value="普通组价跟knockout交互" id="koInteraction"/>
 <div id="container">
     <div style="border: 1px solid #3cb371" data-bind="click:AddModule">+</div>
     <div data-bind="foreach:Modules">
@@ -70,9 +103,11 @@
             <h1><!--ko text:ModuleName--><!--/ko--></h1>
             <input type="button" value="删除" data-bind="click:$parent.DeleteModule"/>
             <input type="button" value="编辑" data-bind="click:$parent.EditModule"/>
+            <input type="button" value="新增模块" data-bind="click:$parent.AddModule" />
         </div>
     </div>
 </div>
 
-
-<div id="EditModeContainer"></div>
+<div id="EditModeContainer">
+    
+</div>
