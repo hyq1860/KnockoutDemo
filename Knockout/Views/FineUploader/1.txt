@@ -15,3 +15,6 @@ http://docs.fineuploader.com/contributing.html
 
 
 http://blog.ekini.net/2013/02/21/setting-up-file-uploader-fineuploader-basic-with-cakephp/
+
+demo示例
+http://tellibus.com/fineuploader/fine-uploader-basic-demo.html
