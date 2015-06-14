@@ -11,3 +11,7 @@ grunt
 https://github.com/FineUploader/server-examples
 
 http://docs.fineuploader.com/contributing.html
+
+
+
+http://blog.ekini.net/2013/02/21/setting-up-file-uploader-fineuploader-basic-with-cakephp/

@@ -9,20 +9,111 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <script src="~/Scripts/fine-uploader.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    @*<script src="~/Scripts/jquery-2.1.4.min.js" type="text/javascript"></script>*@
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    @*<script type="text/javascript">
         $(function() {
             var uploader = new qq.FineUploaderBasic({
-                element: document.getElementById('fubUploadButton'),
+                element: document.getElementById('btnUpload'),
+                debug: true,
                 request: {
                     endpoint: '/Upload/UploadFile'
                 },
-                multiple: false
+                multiple: false,
+                //text: {
+                //    uploadButton: '<div>Select a file</div>',
+                //    defaultResponseError: "Oh noes! Upload fail."
+                //},
+                validation: {
+                    allowedExtensions: ['jpeg', 'jpg', 'gif', 'png', 'pdf'],
+                    sizeLimit: 204800 // 200 kB = 200 * 1024 bytes
+                },
+                callbacks: {
+                    onSubmit: function(id, fileName) {
+                        console.log("111");
+                    },
+                    onUpload: function(id, fileName) {
+                        
+                    },
+                    onProgress: function(id, fileName, loaded, total) {
+                        
+                    },
+                    onComplete: function(id, fileName, responseJSON) {
+                        
+                    }
+                }
             });
+
+            console.log("执行了么");
         })
+    </script>*@
+    <script>
+        $(document).ready(function () {
+            $fub = $('#fine-uploader-basic');
+            $messages = $('#messages');
+
+            var uploader = new qq.FineUploaderBasic({
+                button: document.getElementById('fine-uploader-basic'),
+                request: {
+                    endpoint: '/Upload/UploadFile'
+                },
+                validation: {
+                    allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                    sizeLimit: 2048000 // 200 kB = 200 * 1024 bytes
+                },
+                callbacks: {
+                    onSubmit: function (id, fileName) {
+                        $messages.append('<div id="file-' + id + '" class="alert" style="margin: 20px 0 0"></div>');
+                    },
+                    onUpload: function (id, fileName) {
+                        $('#file-' + id).addClass('alert-info')
+                                        .html('<img src="client/loading.gif" alt="Initializing. Please hold."> ' +
+                                              'Initializing ' +
+                                              '“' + fileName + '”');
+                    },
+                    onProgress: function (id, fileName, loaded, total) {
+                        if (loaded < total) {
+                            progress = Math.round(loaded / total * 100) + '% of ' + Math.round(total / 1024) + ' kB';
+                            $('#file-' + id).removeClass('alert-info')
+                                            .html('<img src="client/loading.gif" alt="In progress. Please hold."> ' +
+                                                  'Uploading ' +
+                                                  '“' + fileName + '” ' +
+                                                  progress);
+                        } else {
+                            $('#file-' + id).addClass('alert-info')
+                                            .html('<img src="client/loading.gif" alt="Saving. Please hold."> ' +
+                                                  'Saving ' +
+                                                  '“' + fileName + '”');
+                        }
+                    },
+                    onComplete: function (id, fileName, responseJSON) {
+                        if (responseJSON.success) {
+                            $('#file-' + id).removeClass('alert-info')
+                                            .addClass('alert-success')
+                                            .html('<i class="icon-ok"></i> ' +
+                                                  'Successfully saved ' +
+                                                  '“' + fileName + '”' +
+                                                  '<br><img src="img/success.jpg" alt="' + fileName + '">');
+                        } else {
+                            $('#file-' + id).removeClass('alert-info')
+                                            .addClass('alert-error')
+                                            .html('<i class="icon-exclamation-sign"></i> ' +
+                                                  'Error with ' +
+                                                  '“' + fileName + '”: ' +
+                                                  responseJSON.error);
+                        }
+                    }
+                },
+                debug: true
+            });
+        });
     </script>
 </head>
 <body>
-    <div id="fubUploadButton" class="btn btn-primary"><div>Select Files</div></div>
+    <div id="fine-uploader-basic" class="btn btn-success">
+        <i class="icon-upload icon-white"></i> Click to upload
+    </div>
+<div id="messages"></div>
+    
 </body>
 </html>
