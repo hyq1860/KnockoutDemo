@@ -330,6 +330,7 @@
     <Content Include="Views\Knockout\MicroStoreModuleDemo.cshtml" />
     <Content Include="Views\FineUploader\Index.cshtml" />
     <Content Include="Views\FineUploader\FineUploaderCore.cshtml" />
+    <Content Include="Views\FineUploader\JqueryWrapperFineUploader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

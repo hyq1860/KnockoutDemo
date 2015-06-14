@@ -21,5 +21,10 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult JqueryWrapperFineUploader()
+        {
+            return View();
+        }
+
     }
 }

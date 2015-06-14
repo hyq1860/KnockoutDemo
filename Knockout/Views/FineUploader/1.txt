@@ -18,3 +18,6 @@ http://blog.ekini.net/2013/02/21/setting-up-file-uploader-fineuploader-basic-wit
 
 demo示例
 http://tellibus.com/fineuploader/fine-uploader-basic-demo.html
+
+示例 很全 很感谢
+http://tellibus.com/fineuploader/
