@@ -331,6 +331,7 @@
     <Content Include="Views\FineUploader\Index.cshtml" />
     <Content Include="Views\FineUploader\FineUploaderCore.cshtml" />
     <Content Include="Views\FineUploader\JqueryWrapperFineUploader.cshtml" />
+    <Content Include="Views\FineUploader\FineUpLoaderStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

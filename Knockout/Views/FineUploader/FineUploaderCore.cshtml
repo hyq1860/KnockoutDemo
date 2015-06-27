@@ -57,11 +57,15 @@
                 request: {
                     endpoint: '/Upload/UploadFile'
                 },
+                multiple: false,
                 validation: {
                     allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
-                    sizeLimit: 2048000 // 200 kB = 200 * 1024 bytes
+                    sizeLimit: 20480000 // 200 kB = 200 * 1024 bytes
                 },
                 callbacks: {
+                    onValidate: function (data) {
+                        console.log(data);
+                    },
                     onSubmit: function (id, fileName) {
                         $messages.append('<div id="file-' + id + '" class="alert" style="margin: 20px 0 0"></div>');
                     },
@@ -110,10 +114,9 @@
     </script>
 </head>
 <body>
-    <div id="fine-uploader-basic" class="btn btn-success">
-        <i class="icon-upload icon-white"></i> Click to upload
+    <div id="fine-uploader-basic">
+        上传
     </div>
-<div id="messages"></div>
-    
+    <div id="messages"></div>
 </body>
 </html>

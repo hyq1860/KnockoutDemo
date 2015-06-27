@@ -6,15 +6,8 @@ using System.Web.Mvc;
 
 namespace Knockout.Controllers
 {
-    public class FineUploaderController : Controller
+    public class FineUploaderController : BaseController
     {
-        //
-        // GET: /FineUploader/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult FineUploaderCore()
         {
@@ -22,6 +15,11 @@ namespace Knockout.Controllers
         }
 
         public ActionResult JqueryWrapperFineUploader()
+        {
+            return View();
+        }
+
+        public ActionResult FineUpLoaderStart()
         {
             return View();
         }
