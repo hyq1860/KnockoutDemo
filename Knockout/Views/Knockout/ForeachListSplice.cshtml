@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "knockout 数组的按照下标插入";
+}
+
+<h2>ForeachListSplice</h2>
+
+<div id="ListContainer">
+    <ul data-bind="foreach:Products">
+        <li>id：<!--ko text:Id--><!--/ko-->name:<!--ko text:Name--><!--/ko-->
+            <input type="button" value="点击我按照位置插入数组" data-bind="click:function(){$parent.AddAtIndex($index())}" />
+        </li>
+    </ul>
+    <input type="button" value="点击我按照位置插入数组" data-bind="click:AddAtIndex" />
+</div>
+
+<script type="text/javascript">
+    function ProductListViewModel() {
+        var self = this;
+
+        //商品集合
+        self.Products = ko.observableArray();
+
+        self.AddAtIndex = function (index) {
+            console.log(index);
+            if (index!=null) {
+                var id = ++index;
+                self.Products.splice(id, 0, { Id: id, Name: "商品" + id });
+            } else {
+                self.Products.splice(2, 0, { Id: 8, Name: "商品08" });
+            }
+            
+        }
+    }
+
+    $(function() {
+
+        var productListViewModel = new ProductListViewModel();
+        productListViewModel.Products.push({ Id: 1, Name: "商品01" });
+        productListViewModel.Products.push({ Id: 2, Name: "商品02" });
+        productListViewModel.Products.push({ Id: 3, Name: "商品03" });
+
+        ko.applyBindings(productListViewModel,document.getElementById("ListContainer"));
+    });
+</script>

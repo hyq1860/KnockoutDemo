@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JsonHelper\JsonHelper.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -249,6 +250,8 @@
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SepcialDll\Newtonsoft.Json.dll" />
+    <Content Include="SepcialDll\Newtonsoft.Json.xml" />
     <Content Include="Views\FineUploader\1.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -332,6 +335,7 @@
     <Content Include="Views\FineUploader\FineUploaderCore.cshtml" />
     <Content Include="Views\FineUploader\JqueryWrapperFineUploader.cshtml" />
     <Content Include="Views\FineUploader\FineUpLoaderStart.cshtml" />
+    <Content Include="Views\Knockout\ForeachListSplice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

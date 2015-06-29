@@ -331,5 +331,10 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult ForeachListSplice()
+        {
+            return View();
+        }
+
     }
 }
