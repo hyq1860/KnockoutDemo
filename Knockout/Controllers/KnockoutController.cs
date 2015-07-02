@@ -336,5 +336,9 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult SortableArray()
+        {
+            return View();
+        }
     }
 }

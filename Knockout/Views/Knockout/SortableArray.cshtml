@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "SortableArray";
+}
+
+<h2>SortableArray</h2>
+
+<!-- ko with:LogoModule -->
+<img data-bind="attr:{src:Logo}"/>
+<!--/ko-->
+
+<div class="container" data-bind="sortable: Modules">
+    <div>
+        <!--ko if: Type()=='title'-->
+        <div>
+            <div class="title" data-bind="text: Name()"></div>
+            <ul data-bind="foreach:Products,class:TagStyleColorArray">
+                <li><!--ko text:Name--><!--/ko--></li>
+            </ul>
+            <input type="button" value="删除" data-bind="click:$parent.Remove" />
+        </div>
+        <!--/ko-->
+        <!--ko if: Type()=='tag'-->
+        <div class="item" data-bind="text: Name()"></div>
+
+        <ul @*data-bind="foreach:Products,class:TagStyleColorArray"*@>
+            <!--ko foreach: Products-->
+            <li><!--ko text:Name--><!--/ko--></li>
+            <!--/ko-->
+        </ul>
+        
+        <input type="button" value="删除" data-bind="click:$parent.Remove" />
+        <!--/ko-->
+    </div>
+</div>
+
+<input type="button" value="获取排序数据" data-bind="click:SaveAll"/>
+
+<script type="text/javascript">
+    function StoreModuleViewModel() {
+        var self = this;
+        //草稿id
+        self.Id = ko.observable(0);
+
+        //默认的时候全局id
+        self.GlobalId = 0;
+        self.GetGlobalId = function () {
+            var modules = self.Modules();
+
+            var moduleLength = modules.length;
+            var newArray = [];
+            for (var i = 0; i < moduleLength; i++) {
+                newArray.push(modules[i].Id());
+            }
+            for (var i = 0; i < moduleLength; i++) {
+                for (var j = 1; j < moduleLength - i; j++) {
+                    if (newArray[j - 1] > newArray[j]) {
+                        newArray[j] = newArray[j - 1];
+                    }
+                }
+            }
+            var globalId = self.GlobalId + moduleLength == 0 ? 0 : newArray[moduleLength - 1];
+            return ++globalId;
+        }
+
+        //排序数组
+        self.SortArray = [];
+
+        self.LogoModule = ko.observable();
+
+        //模块集合
+        self.Modules = ko.observableArray([]);
+
+        //保存
+        self.SaveAll=function() {
+            console.log(ko.toJSON(self));
+        }
+
+        self.Remove=function(item) {
+            self.Modules.remove(item);
+        }
+    }
+
+    function LogoModule() {
+        var self = this;
+
+        self.Logo = ko.observable("http://www.baidu.com/img/bd_logo1.png");
+    }
+
+    function TitleModule() {
+        var self = this;
+        self.Type = ko.observable("title");
+        self.Name = ko.observable("TitleModule");
+
+        self.Products = ko.observableArray([]);
+
+        self.TagStyleColorArray = ko.observableArray(['class1','class2']);
+    }
+
+    function TagModule() {
+        var self = this;
+        self.Type = ko.observable("tag");
+        self.Products = ko.observableArray([]);
+        self.Name = ko.observable("TagModule");
+    }
+
+    function Product() {
+        var self = this;
+
+        self.Name = ko.observable("默认商品");
+    }
+
+    $(function() {
+        var storeModuleViewModel = new StoreModuleViewModel();
+
+        storeModuleViewModel.LogoModule(new LogoModule());
+
+        var tagModule = new TagModule();
+        tagModule.Products.push(new Product());
+        storeModuleViewModel.Modules.push(tagModule);
+
+        var titleModule = new TitleModule();
+        titleModule.Products.push(new Product());
+        storeModuleViewModel.Modules.push(titleModule);
+
+        ko.applyBindings(storeModuleViewModel);
+    });
+</script>

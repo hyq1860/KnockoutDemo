@@ -235,6 +235,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -243,6 +244,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
+    <Content Include="Scripts\knockout-sortable.js" />
+    <Content Include="Scripts\knockout-sortable.min.js" />
+    <Content Include="Scripts\knockout.extension.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -336,6 +340,7 @@
     <Content Include="Views\FineUploader\JqueryWrapperFineUploader.cshtml" />
     <Content Include="Views\FineUploader\FineUpLoaderStart.cshtml" />
     <Content Include="Views\Knockout\ForeachListSplice.cshtml" />
+    <Content Include="Views\Knockout\SortableArray.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
