@@ -3,38 +3,44 @@
 }
 
 <h2>SortableArray</h2>
+<div id="moduleCotainer">
+    <!-- ko with:LogoModule -->
+    <img data-bind="attr:{src:Logo}" />
+    <!--/ko-->
 
-<!-- ko with:LogoModule -->
-<img data-bind="attr:{src:Logo}"/>
-<!--/ko-->
-
-<div class="container" data-bind="sortable: Modules">
-    <div>
-        <!--ko if: Type()=='title'-->
+    <div class="container" data-bind="sortable: Modules">
         <div>
-            <div class="title" data-bind="text: Name()"></div>
-            <ul data-bind="foreach:Products,class:TagStyleColorArray">
-                <li><!--ko text:Name--><!--/ko--></li>
-            </ul>
-            <input type="button" value="删除" data-bind="click:$parent.Remove" />
-        </div>
-        <!--/ko-->
-        <!--ko if: Type()=='tag'-->
-        <div class="item" data-bind="text: Name()"></div>
-
-        <ul @*data-bind="foreach:Products,class:TagStyleColorArray"*@>
-            <!--ko foreach: Products-->
-            <li><!--ko text:Name--><!--/ko--></li>
+            <!--ko if: Type()=='title'-->
+            <div data-bind="attr:{id:Id}">
+                <div   data-bind="text: Id"></div>
+                <div class="title" data-bind="text: Title,class:TitleStyleColorArray"></div>
+                <ul data-bind="foreach:Products">
+                    <li data-bind="text:Name"></li>
+                </ul>
+                <input type="button" value="删除" data-bind="click:$parent.Remove"/>
+                <input type="button" value="新增" data-bind="click:$parent.Add"/>
+            </div>
             <!--/ko-->
-        </ul>
-        
-        <input type="button" value="删除" data-bind="click:$parent.Remove" />
-        <!--/ko-->
+            <!--ko if: Type()=='tag'-->
+            <div data-bind="attr:{id:Id}">
+                <div data-bind="text: Id"></div>
+                <div class="item" data-bind="text: Name"></div>
+
+                <ul data-bind="foreach:Products,class:TagStyleColorArray">
+
+                    <li><!--ko text:Name--><!--/ko--></li>
+
+                </ul>
+
+                <input type="button" value="删除" data-bind="click:$parent.Remove"/>
+                <input type="button" value="新增" data-bind="click:$parent.Add"/>
+            </div>
+            <!--/ko-->
+        </div>
     </div>
+
+    <input type="button" value="获取排序数据" data-bind="click:SaveAll" />
 </div>
-
-<input type="button" value="获取排序数据" data-bind="click:SaveAll"/>
-
 <script type="text/javascript">
     function StoreModuleViewModel() {
         var self = this;
@@ -63,12 +69,19 @@
         }
 
         //排序数组
-        self.SortArray = [];
+        //self.SortArray = [];
 
         self.LogoModule = ko.observable();
 
         //模块集合
         self.Modules = ko.observableArray([]);
+
+        self.Add = function () {
+            var titleModule = new TitleModule();
+            titleModule.Id(4);
+            titleModule.Products.push(new Product());
+            self.Modules.push(titleModule);
+        }
 
         //保存
         self.SaveAll=function() {
@@ -82,25 +95,29 @@
 
     function LogoModule() {
         var self = this;
-
+        self.Id = ko.observable();
         self.Logo = ko.observable("http://www.baidu.com/img/bd_logo1.png");
     }
 
     function TitleModule() {
         var self = this;
+        self.Id = ko.observable();
         self.Type = ko.observable("title");
-        self.Name = ko.observable("TitleModule");
+        self.Title = ko.observable("TitleModule");
 
         self.Products = ko.observableArray([]);
 
-        self.TagStyleColorArray = ko.observableArray(['class1','class2']);
+        self.TitleStyleColorArray = ko.observableArray(["class4", "class3"]);
     }
 
     function TagModule() {
         var self = this;
+        self.Id = ko.observable();
         self.Type = ko.observable("tag");
         self.Products = ko.observableArray([]);
         self.Name = ko.observable("TagModule");
+
+        self.TagStyleColorArray = ko.observableArray(["class2", "class1"]);
     }
 
     function Product() {
@@ -115,13 +132,20 @@
         storeModuleViewModel.LogoModule(new LogoModule());
 
         var tagModule = new TagModule();
+        tagModule.Id(1);
         tagModule.Products.push(new Product());
         storeModuleViewModel.Modules.push(tagModule);
 
+        var tagModule1 = new TagModule();
+        tagModule1.Id(2);
+        tagModule1.Products.push(new Product());
+        storeModuleViewModel.Modules.push(tagModule1);
+
         var titleModule = new TitleModule();
+        titleModule.Id(3);
         titleModule.Products.push(new Product());
         storeModuleViewModel.Modules.push(titleModule);
 
-        ko.applyBindings(storeModuleViewModel);
+        ko.applyBindings(storeModuleViewModel, document.getElementById("moduleCotainer"));
     });
 </script>
