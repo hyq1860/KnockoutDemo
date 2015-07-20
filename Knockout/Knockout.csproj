@@ -153,6 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iScrollController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
+    <Compile Include="Controllers\PhoneSwipeController.cs" />
     <Compile Include="Controllers\RequireController.cs" />
     <Compile Include="Controllers\SwiperController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -221,6 +222,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\default-skin\default-skin.css" />
+    <Content Include="Scripts\default-skin\default-skin.png" />
+    <Content Include="Scripts\default-skin\default-skin.svg" />
+    <Content Include="Scripts\default-skin\preloader.gif" />
     <Content Include="Scripts\director.min.js" />
     <Content Include="Scripts\fine-uploader.min.js" />
     <Content Include="Scripts\iscroll\iscroll-infinite.js" />
@@ -250,6 +255,11 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\photoswipe-ui-default.js" />
+    <Content Include="Scripts\photoswipe-ui-default.min.js" />
+    <Content Include="Scripts\photoswipe.css" />
+    <Content Include="Scripts\photoswipe.js" />
+    <Content Include="Scripts\photoswipe.min.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\text.js" />
@@ -341,6 +351,8 @@
     <Content Include="Views\FineUploader\FineUpLoaderStart.cshtml" />
     <Content Include="Views\Knockout\ForeachListSplice.cshtml" />
     <Content Include="Views\Knockout\SortableArray.cshtml" />
+    <Content Include="Views\PhoneSwipe\Index.cshtml" />
+    <Content Include="Views\PhoneSwipe\PhotoSwipeDemo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
