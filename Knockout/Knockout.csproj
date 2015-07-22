@@ -153,7 +153,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\iScrollController.cs" />
     <Compile Include="Controllers\KnockoutController.cs" />
-    <Compile Include="Controllers\PhoneSwipeController.cs" />
+    <Compile Include="Controllers\LazyLoadController.cs" />
+    <Compile Include="Controllers\PhonoSwipeController.cs" />
     <Compile Include="Controllers\RequireController.cs" />
     <Compile Include="Controllers\SwiperController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -241,6 +242,8 @@
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.lazyload.js" />
+    <Content Include="Scripts\jquery.lazyload.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -267,6 +270,16 @@
     <Content Include="SepcialDll\Newtonsoft.Json.dll" />
     <Content Include="SepcialDll\Newtonsoft.Json.xml" />
     <Content Include="Views\FineUploader\1.txt" />
+    <Content Include="Views\LazyLoad\img\bmw_m1_hood.jpg" />
+    <Content Include="Views\LazyLoad\img\bmw_m1_side.jpg" />
+    <Content Include="Views\LazyLoad\img\bmw_m3_gt.jpg" />
+    <Content Include="Views\LazyLoad\img\corvette_pitstop.jpg" />
+    <Content Include="Views\LazyLoad\img\grey.gif" />
+    <Content Include="Views\LazyLoad\img\lazyloading.png" />
+    <Content Include="Views\LazyLoad\img\transparent.gif" />
+    <Content Include="Views\LazyLoad\img\viper_1.jpg" />
+    <Content Include="Views\LazyLoad\img\viper_corner.jpg" />
+    <Content Include="Views\LazyLoad\img\white.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -351,8 +364,12 @@
     <Content Include="Views\FineUploader\FineUpLoaderStart.cshtml" />
     <Content Include="Views\Knockout\ForeachListSplice.cshtml" />
     <Content Include="Views\Knockout\SortableArray.cshtml" />
-    <Content Include="Views\PhoneSwipe\Index.cshtml" />
-    <Content Include="Views\PhoneSwipe\PhotoSwipeDemo.cshtml" />
+    <Content Include="Views\PhonoSwipe\Index.cshtml" />
+    <Content Include="Views\PhonoSwipe\PhotoSwipeDemo.cshtml" />
+    <Content Include="Views\PhonoSwipe\PhotoSwipeOfficalDemo.cshtml" />
+    <Content Include="Views\PhonoSwipe\PhotoSwipeJqueryDemo.cshtml" />
+    <Content Include="Views\LazyLoad\LazyLoadQuickStart.cshtml" />
+    <Content Include="Views\LazyLoad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

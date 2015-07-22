@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace Knockout.Controllers
 {
-    public class PhoneSwipeController : BaseController
+    public class LazyLoadController : BaseController
     {
         //
-        // GET: /PhoneSwipe/
+        // GET: /LazyLoad/
 
-      
-        public ActionResult PhotoSwipeDemo()
+        public ActionResult LazyLoadQuickStart()
         {
             return View();
         }

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "LazyLoadQuickStart";
+}
+
+<h2>LazyLoadQuickStart</h2>
+
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<h1>图片延迟加载</h1>
+<img class="lazy" data-original="/img/bmw_m1_hood.jpg" src="/img/lazyloading.png" width="640" height="480">
+@section scripts
+{
+    @Scripts.Render("~/Scripts/jquery.lazyload.min.js")
+    <script type="text/javascript">
+        $(function() {
+            $("img.lazy").lazyload();
+        });
+    </script>
+}

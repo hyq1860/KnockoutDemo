@@ -1,0 +1,242 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" debug="true">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+
+    <title>PhotoSwipe: Responsive JavaScript Image Gallery</title>
+
+    <meta name="description" content="Touch-friendly JavaScript image gallery for mobile and desktop, without dependencies. Responsive layout. Swipe and zoom gestures.">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+
+    <meta name="author" content="Dmitry Semenov">
+    <link rel="canonical" href="http://photoswipe.com">
+
+    <meta property="og:url" content="http://photoswipe.com">
+    <meta property="og:title" content="PhotoSwipe: Responsive JavaScript Image Gallery">
+    <meta property="og:description" content="Touch-friendly JavaScript image gallery for mobile and desktop, without dependencies. Responsive layout. Swipe and zoom gestures.">
+    <meta property="og:image" content="http://photoswipe.com/test/horizontal-swipe.jpg">
+
+    <link href="http://photoswipe.com/dist/photoswipe.css?v=4.1.0-1.0.4" rel="stylesheet" />
+    <link href="http://photoswipe.com/dist/default-skin/default-skin.css?v=4.1.0-1.0.4" rel="stylesheet"/>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="http://photoswipe.com/dist/photoswipe.min.js?v=4.1.0-1.0.4"></script>
+    <script src="http://photoswipe.com/dist/photoswipe-ui-default.min.js?v=4.1.0-1.0.4"></script>
+
+
+
+
+    <!--[if lt IE 9]>
+     <script>
+        document.createElement('figure');
+     </script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+
+
+
+
+    <div class="section section--head">
+
+
+
+        <div class="row">
+            <div id="demo-test-gallery" class="demo-gallery">
+                <ul>
+                    <li>
+                        <a href="http://192.168.100.6:8006/c/1507/07/20150707110444-rvzdvnd5asl.jpg" data-size="1600x1600" @*data-med="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_b.jpg"*@ data-med-size="1024x1024" data-author="Folkert Gorter" @*class="demo-gallery__img--main"*@>
+                            <img src="http://192.168.100.6:8006/c/1507/07/20150707110444-rvzdvnd5asl.jpg" alt="" />
+                            @*<figure>This is dummy caption.</figure>*@
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://192.168.100.6:8006/c/1507/07/20150707110446-0feqg5cnb5q.jpg" data-size="1600x1068" @*data-med="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_b.jpg"*@ data-med-size="1024x683" data-author="Samuel Rohl">
+                            <img src="http://192.168.100.6:8006/c/1507/07/20150707110446-0feqg5cnb5q.jpg" alt="" />
+                            @*<figure>This is dummy caption. It has been placed here solely to demonstrate the look and feel of finished, typeset text.</figure>*@
+                        </a>
+                    </li>
+                </ul>
+
+                @*<a href="https://farm4.staticflickr.com/3902/14985871946_24f47d4b53_h.jpg" data-size="1600x1067" data-med="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg" data-med-size="1024x683" data-author="Ales Krivec">
+                        <img src="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg" alt="" />
+                        <figure>This is dummy caption. It is not meant to be read.</figure>
+                    </a>
+
+
+                    <a href="https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg" data-size="1600x1067" data-med="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_b.jpg" data-med-size="1024x683" data-author="Michael Hull">
+                        <img src="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg" alt="" />
+                        <figure>Dummy caption. It's Greek to you. Unless, of course, you're Greek, in which case, it really makes no sense.</figure>
+                    </a>
+
+                    <a href="https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg" data-size="1600x1067" data-med="https://farm4.staticflickr.com/3920/15008465772_383e697089_b.jpg" data-med-size="1024x683" data-author="Thomas Lefebvre">
+                        <img src="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg" alt="" />
+                        <figure>It's a dummy caption. He who searches for meaning here will be sorely disappointed.</figure>
+                    </a>*@
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="pswp__loading-indicator"><div class="pswp__loading-indicator__line"></div></div> -->
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip">
+                        <!-- <a href="#" class="pswp__share--facebook"></a>
+                        <a href="#" class="pswp__share--twitter"></a>
+                        <a href="#" class="pswp__share--pinterest"></a>
+                        <a href="#" download class="pswp__share--download"></a> -->
+                    </div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        (function ($) {
+            $.fn.photoswipe = function (options) {
+                var galleries = [],
+                    _options = options;
+
+                var init = function ($this) {
+                    galleries = [];
+                    $this.each(function (i, gallery) {
+                        galleries.push({
+                            id: i,
+                            items: []
+                        });
+
+                        $(gallery).find('a').each(function (k, link) {
+                            var $link = $(link),
+                                size = $link.data('size').split('x');
+                            if (size.length != 2) {
+                                throw SyntaxError("Missing data-size attribute.");
+                            }
+                            if ($(gallery).data('month')) {
+                                $link.data('gallery-id', $(gallery).data('month'));
+                            } else {
+                                $link.data('gallery-id', i + 1);
+                            }
+
+                            $link.data('photo-id', k);
+
+                            var item = {
+                                src: link.href,
+                                msrc: link.children[0].getAttribute('src'),
+                                w: parseInt(size[0], 10),
+                                h: parseInt(size[1], 10),
+                                title: $link.data('title'),
+                                author: $link.data('author'),
+                                el: link
+                            }
+
+                            galleries[i].items.push(item);
+
+                        });
+
+                        $(gallery).on('click', 'a', function (e) {
+                            e.preventDefault();
+                            var gid = $(this).data('gallery-id'),
+                                pid = $(this).data('photo-id');
+                            openGallery(gid, pid);
+                        });
+                    });
+                }
+
+                var openGallery = function (gid, pid) {
+                    var pswpElement = document.querySelectorAll('.pswp')[0],
+                        items = galleries[gid - 1].items,
+                        options = {
+                            history: false,
+                            index: pid,
+                            addCaptionHTMLFn: function (item, captionEl, isFake) {
+                                if (!item.title) {
+                                    captionEl.children[0].innerText = '';
+                                    return false;
+                                }
+                                captionEl.children[0].innerHTML = item.title + '<br/><small>' + item.author + '</small>';
+                                return true;
+                            },
+                            showHideOpacity: true
+                        };
+                    $.extend(options, _options);
+                    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                    gallery.init();
+                }
+
+                // initialize
+                init(this);
+
+                return this;
+            };
+        }(jQuery));
+
+        $(".demo-gallery").photoswipe();
+
+    </script>
+
+</body>
+</html>
