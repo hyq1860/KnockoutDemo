@@ -27,5 +27,10 @@ namespace Knockout.Controllers
             return View();
         }
 
+
+        public ActionResult PhonoSwipeAndLazyLoad()
+        {
+            return View();
+        }
     }
 }

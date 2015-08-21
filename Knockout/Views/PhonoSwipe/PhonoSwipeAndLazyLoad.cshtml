@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "LazyLoadQuickStart";
+    ViewBag.Title = "PhonoSwipeAndLazyLoad";
 }
 
 <h2>LazyLoadQuickStart</h2>
@@ -22,34 +22,91 @@
 <h1>图片延迟加载</h1>
 <h1>图片延迟加载</h1>
 <h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
-<h1>图片延迟加载</h1>
+
 <h1>图片延迟加载</h1>
 <div class="demo-gallery">
     <ul>
         <li>
-            <a>
+            <a href="/img/bmw_m1_hood.jpg" data-size="1600x1600" data-med-size="600x600" data-title="我是图片标题1" @*data-author="Samuel Rohl"*@>
                 <img class="lazy" data-original="/img/bmw_m1_hood.jpg" src="/img/lazyloading.png" width="640" height="480" />
             </a>
         </li>
         <li>
-            <a>
+            <a href="/img/bmw_m1_hood.jpg" data-size="1600x1600" data-med-size="600x600" data-title="我是图片标题2" @*data-author="Samuel Rohl"*@>
                 <img class="lazy" data-original="/img/bmw_m1_hood.jpg" src="/img/lazyloading.png" width="640" height="480" />
             </a>
-        </li> 
+        </li>
     </ul>
-    @*<img class="lazy" data-original="/img/bmw_m1_hood.jpg" src="/img/lazyloading.png" width="640" height="480">*@
+</div>
+
+<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="pswp__loading-indicator"><div class="pswp__loading-indicator__line"></div></div> -->
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip">
+                    <!-- <a href="#" class="pswp__share--facebook"></a>
+                    <a href="#" class="pswp__share--twitter"></a>
+                    <a href="#" class="pswp__share--pinterest"></a>
+                    <a href="#" download class="pswp__share--download"></a> -->
+                </div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>
 
 @section scripts
 {
+
+    @*<script src="http://photoswipe.com/dist/photoswipe.min.js?v=4.1.0-1.0.4"></script>
+    <script src="http://photoswipe.com/dist/photoswipe-ui-default.min.js?v=4.1.0-1.0.4"></script>*@
+<link href="http://photoswipe.com/dist/photoswipe.css?v=4.1.0-1.0.4" rel="stylesheet" />
+<link href="http://photoswipe.com/dist/default-skin/default-skin.css?v=4.1.0-1.0.4" rel="stylesheet" />
+    @Scripts.Render("http://photoswipe.com/dist/photoswipe.min.js?v=4.1.0-1.0.4")
+    @Scripts.Render("http://photoswipe.com/dist/photoswipe-ui-default.min.js?v=4.1.0-1.0.4")
     @Scripts.Render("~/Scripts/jquery.lazyload.min.js")
     <script type="text/javascript">
         $(function() {
@@ -116,7 +173,11 @@
                                     captionEl.children[0].innerText = '';
                                     return false;
                                 }
-                                captionEl.children[0].innerHTML = item.title + '<br /><small>' + item.author + '</small>';
+                                var descHtml = item.title;
+                                if (item.author) {
+                                    descHtml += '<br /><small>' + item.author + '</small>';
+                                }
+                                captionEl.children[0].innerHTML = descHtml;
                                 return true;
                             },
                             showHideOpacity: true

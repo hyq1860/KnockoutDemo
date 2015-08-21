@@ -21,6 +21,12 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -270,16 +276,16 @@
     <Content Include="SepcialDll\Newtonsoft.Json.dll" />
     <Content Include="SepcialDll\Newtonsoft.Json.xml" />
     <Content Include="Views\FineUploader\1.txt" />
-    <Content Include="Views\LazyLoad\img\bmw_m1_hood.jpg" />
-    <Content Include="Views\LazyLoad\img\bmw_m1_side.jpg" />
-    <Content Include="Views\LazyLoad\img\bmw_m3_gt.jpg" />
-    <Content Include="Views\LazyLoad\img\corvette_pitstop.jpg" />
-    <Content Include="Views\LazyLoad\img\grey.gif" />
-    <Content Include="Views\LazyLoad\img\lazyloading.png" />
-    <Content Include="Views\LazyLoad\img\transparent.gif" />
-    <Content Include="Views\LazyLoad\img\viper_1.jpg" />
-    <Content Include="Views\LazyLoad\img\viper_corner.jpg" />
-    <Content Include="Views\LazyLoad\img\white.gif" />
+    <Content Include="img\bmw_m1_hood.jpg" />
+    <Content Include="img\bmw_m1_side.jpg" />
+    <Content Include="img\bmw_m3_gt.jpg" />
+    <Content Include="img\corvette_pitstop.jpg" />
+    <Content Include="img\grey.gif" />
+    <Content Include="img\lazyloading.png" />
+    <Content Include="img\transparent.gif" />
+    <Content Include="img\viper_1.jpg" />
+    <Content Include="img\viper_corner.jpg" />
+    <Content Include="img\white.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -370,6 +376,7 @@
     <Content Include="Views\PhonoSwipe\PhotoSwipeJqueryDemo.cshtml" />
     <Content Include="Views\LazyLoad\LazyLoadQuickStart.cshtml" />
     <Content Include="Views\LazyLoad\Index.cshtml" />
+    <Content Include="Views\PhonoSwipe\PhonoSwipeAndLazyLoad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
