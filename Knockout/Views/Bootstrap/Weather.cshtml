@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Weather";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript">
+
+function get_jsonp() {
+    $("#result_fut").html('');
+    $('#result_weather').html('正在查询中……');
+
+    $.getJSON("http://v.juhe.cn/weather/index?callback=?", {
+        "cityname" : $("#textt").val(),
+        "dtype" : "jsonp",
+        "key": '582e66e71fee45a356863fdcd3dc9080'
+    }, function(data) {
+        var sk = data.result.sk;
+        var today = data.result.today;
+        var futur = data.result.future;
+        var fut = "<tr><th>日期</th><th>温度</th><th>天气</th><th>风向</th></tr>";
+
+        if(today){
+            for (var i in futur) {
+                fut += "<tr><td>" + futur[i].date + ' , ' + futur[i].week + "</td><td>" +  futur[i].temperature + "</td><td>" + futur[i].weather + "</td><td>" + futur[i].wind + "</td></tr>";
+            }
+
+            $('#result_weather').html("<p>" + '当前:  ' + sk.temp + '℃  , ' + sk.wind_direction + sk.wind_strength + ' , ' + '空气湿度' + sk.humidity + ' , 更新时间' + sk.time + "</p><p style='padding-bottom: 10px;'>" + today.city + ' 今天是:  ' + today.date_y + ' ' + today.week + ' , ' + today.temperature + ' , ' + today.weather + ' , ' + today.wind + "</p>");
+            $("#result_fut").html(fut);
+            $("table").css('border-bottom','1px solid #ccc');
+        }else{
+            $('#result_weather').html('请输入正确的城市名！');
+            $("#result_fut").html('');
+        }
+    });
+    return false;
+}
+
+toChange = function(){
+    var oTextt = document.getElementById('textt');
+    textChange(oTextt,'请输入所要查询城市');
+};
+
+$(function() {
+    $("#tele a").bind("click", function(){
+        $('#textt').val($(this).text().trim());
+        get_jsonp();
+    });
+});
+    </script>
+    <style type="text/css">
+        body, td, th {
+            font-size: 12px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #tele p a {
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            background: #F7FFFB;
+        }
+
+            #result p {
+                width: 500px;
+                padding: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div id="search_form">
+        <form onsubmit="return get_jsonp();">
+            <input type="text" id="textt" value="请输入所要查询城市" />
+            <input type="submit" id="ima" value="查询">
+        </form>
+    </div>
+    <div id="tele" style="text-align:left; padding:20px 5px; font-size:12px;">
+        <p>
+            <a>北京</a><a>上海</a><a>天津</a><a>重庆</a><a>广州</a><a>南京</a><a>杭州</a><a>合肥</a><a>郑州</a><a>成都</a><a>石家庄</a>
+        </p>
+        <p>
+            <a>长沙</a><a>南昌</a><a>武汉</a><a>济南</a><a>沈阳</a><a>兰州</a><a>桂林</a><a>厦门</a><a>西安</a><a>长春</a><a>哈尔滨</a>
+        </p>
+        <p>
+            <a>太原</a><a>乌鲁木齐</a><a>贵阳</a><a>银川</a><a>大连</a><a>昆明</a><a>海南</a><a>拉萨</a><a>香港</a><a>台州</a><a>澳门</a>
+        </p>
+    </div>
+    <div id="result_weather"></div>
+    <div class="tables">
+        <table id="result_fut" cellspacing="0" cellpadding="10px"></table>
+    </div>
+</body>
+</html>      

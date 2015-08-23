@@ -6,8 +6,11 @@ using System.Web.Mvc;
 
 namespace Knockout.Controllers
 {
-    public class BootstrapController : Controller
+    public class BootstrapController : BaseController
     {
-
+        public ActionResult Weather()
+        {
+            return View();
+        }
     }
 }

@@ -377,6 +377,7 @@
     <Content Include="Views\LazyLoad\LazyLoadQuickStart.cshtml" />
     <Content Include="Views\LazyLoad\Index.cshtml" />
     <Content Include="Views\PhonoSwipe\PhonoSwipeAndLazyLoad.cshtml" />
+    <Content Include="Views\Bootstrap\Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
