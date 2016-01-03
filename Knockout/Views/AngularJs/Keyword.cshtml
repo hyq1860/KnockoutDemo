@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Keyword";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>常用关键字</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+<form name="f">
+    <div ng-controller="c1">
+        <div class="form-group">
+            <img ng-show="user.showImage" ng-src="{{user.head}}" ng-class="{'img-responsive':user.responsive}"/>
+            <img ng-if="user.showImage" ng-src="{{user.head}}" ng-class="{'img-responsive':user.responsive}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">用户名：</label>
+            <input id="name" type="text" required class="form-control" ng-model="user.name"/>
+        </div>
+        <div class="form-group">
+            <label for="password">密码：</label>
+            <input id="password" type="password" class="form-control" ng-model="user.password"/>
+        </div>
+
+        <div class="form-group">
+            <input type="radio" name="sex" value="1" ng-checked="user.sex=='1'"/>男
+            <input type="radio" name="sex" value="0" ng-checked="user.sex=='0'"/>女
+        </div>
+
+        <div class="form-group">
+            职位：
+            <select ng-disabled="1==1">
+                <option value="">--请选择--</option>
+                <option value="1" ng-selected="user.zw==1">董事长</option>
+                <option value="0" ng-selected="user.zw==0">总经理</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <input type="checkbox" ng-checked="isChecked(1)"/>美女
+                <input type="checkbox" ng-checked="isChecked(2)"/>金钱
+                <input type="checkbox" ng-checked="isChecked(3)"/>豪车
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-success" ng-disabled="f.$invalid" ng-click="login(user)">登录</button>
+    </div>
+    
+</form>
+
+<div ng-controller="c2">
+    <ul >
+        <li ng-repeat="item in addressList" ng-class="{'first':$first,'last':$last}">自带的私有属性：$index:{{$index}}编号：{{item.id}} 地址：{{item.address}}</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    //service的形式
+    //value constant factory service
+
+
+    //作用域的问题
+    angular.module('app', [])
+        .controller('c1', function($scope) {
+            $scope.user = {
+                name: '马龙',
+                password: '',
+                zw: 0,
+                sex: '1',
+                aihao: [1, 2],
+                head: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png',
+                responsive: true,
+                showImage: false
+            }
+            $scope.isChecked = function(n) {
+                var isOk = false;
+                for (var i = 0; i < $scope.user.aihao.length; i++) {
+                    if (n == $scope.user.aihao[i]) {
+                        isOk = true;
+                        break;
+                    }
+                }
+                return isOk;
+            }
+            $scope.login = function(user) {
+                console.log(user);
+                console.log($scope.user.sex);
+            }
+        })
+        .controller('c2', function($scope) {
+            $scope.addressList = [
+                { id: 1, address: '长安街一号' },
+                { id: 2, address: '白金汉宫一号' }
+            ];
+        });
+
+</script>
+</body>
+</html>
+

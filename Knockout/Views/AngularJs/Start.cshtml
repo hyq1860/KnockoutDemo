@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Start";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html ng-app="todolist"><!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8"/>
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body>
+<div style="padding: 10px;" ng-controller="TaskCtrl">
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="task"/>
+        <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="add()">提交</button>
+        </span>
+    </div>
+    @*<h4 ng-hide="tasks.length==0">任务列表</h4>*@
+    <h4 ng-if="tasks.length>0">任务列表</h4><!--ng-if 控制的标签 没有的时候不显示 ng-hide是先显示出来 在隐藏 ng-if性能好-->
+    <ul class="list-group">
+        <li ng-repeat="item in tasks track by $index" class="list-group-item">
+            {{item}}
+            <a ng-click="tasks.splice($index,1)">删除</a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    angular.module('todolist', [])
+        .controller('TaskCtrl', function($scope) {
+            $scope.task = "";
+            $scope.tasks = [];
+            $scope.add=function() {
+                $scope.tasks.push($scope.task);
+            }
+        });
+</script>
+</body>
+</html>
+
+

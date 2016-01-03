@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "UseHttp";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="c1">
+        <input type="text" ng-model="name"/>
+        <select>
+            <option ng-repeat="item in provinces" value="{{item.id}}">{{item.name}}</option>
+        </select>
+
+        <select ng-change="selectChange()" ng-model="myOptions"
+                ng-options="value.id as value.label group by value.group for value in myOptions"></select>
+    </div>
+
+    <script type="text/javascript">
+    //service的形式
+    //value constant factory service
+
+
+    //作用域的问题
+    angular.module('app', [])
+        .controller('c1', function ($scope, $http) {
+            /*
+            $http.get("http://www.baidu.com")
+            .success(function(result) {
+                    $scope.html = result;
+            });
+            */
+            $scope.name = '';
+            //监视触发事件
+            $scope.$watch('name',function() {
+                console.log($scope.name);
+            });
+
+            //省
+            $scope.provinces = [
+                { id: 1, name: '河南' },
+                { id: 2, name: '北京' }
+            ];
+            //市
+            $scope.cities = [
+                { id: 101, name: '信阳', pid: 1 },
+                { id: 201, name: '朝阳区', pid: 2 }
+            ];
+
+            
+            $scope.$watch('provinces', function () {
+                console.log($scope.name);
+            });
+
+            var data = {
+                myOptions: [
+                    {
+                        id: 106,
+                        group: "Group 1",
+                        label: "Item 1"
+                    },
+                    {
+                        id: 107,
+                        group: "Group 1",
+                        label: "Item 2"
+                    },
+                    {
+                        id: 110,
+                        group: "Group 2",
+                        label: "Item 3"
+                    }
+                ]
+            };
+            $scope.myOptions = data.myOptions;
+
+            $scope.selectChange=function() {
+                console.log();
+            }
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+

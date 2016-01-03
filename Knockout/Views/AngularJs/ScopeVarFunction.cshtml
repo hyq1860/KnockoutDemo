@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "ScopeVarFunction";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="c1">
+        <input type="text" ng-model="msg" />
+        <h1>{{msg}}</h1>
+        
+        <input type="button" ng-click="append()" value="猛击翻倍" />
+        <input type="text" ng-model="msg2"/>
+        <h1>{{reverse()}}</h1>
+        <br/>
+        <h1 ng-show="errorMsg.length>0" ng-bind="errorMsg"></h1>
+        <input type="text" ng-model="user.Name"/><br />
+        <input type="text" ng-model="user.Password"/><br/>
+        <input type="button" value="登录" ng-click="login()"/>
+    </div>
+    
+    <script type="text/javascript">
+    //作用域的问题
+    angular.module('app', [])
+        .controller('c1', function($scope) {
+            $scope.msg = "消息c1";
+            $scope.msg2 = "";
+            $scope.append=function() {
+                $scope.msg += $scope.msg;
+                console.log("1");
+            }
+            //注意执行两次的问题
+            $scope.reverse = function () {
+                console.log("2");
+                return $scope.msg2.split("").reverse().join("");
+            }
+
+            $scope.user = { Name: '', Password: '' };
+            $scope.errorMsg = '';
+            $scope.login=function() {
+                if ($scope.user.Name == '1' && $scope.user.Password == '1') {
+                    alert("登录成功");
+                } else {
+                    $scope.errorMsg = "错误";
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+
+
+

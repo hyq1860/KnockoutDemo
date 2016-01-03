@@ -12,5 +12,20 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult GridSystem()
+        {
+            return View();
+        }
+
+        public ActionResult Table()
+        {
+            return View();
+        }
+
+        public ActionResult TableResponsive()
+        {
+            return View();
+        }
     }
 }

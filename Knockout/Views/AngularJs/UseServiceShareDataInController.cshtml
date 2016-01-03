@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "UseServiceShareDataInController";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="c1">
+        <input type="text" ng-model="data1.msg" />
+        <h1>{{data1.msg}}</h1>
+        <ul ng-repeat="item in data1.shopcart">
+            <li>{{item}}</li>
+        </ul>
+    </div>
+    <div ng-controller="c2">
+        <input type="text" ng-model="data2.msg" />
+        <h1>{{data2.msg}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        //service的形式
+        //value constant factory service
+
+
+        //作用域的问题
+        angular.module('app', [])
+            .service('site',function() {
+                return {
+                    msg: '我来自factory',
+                    shopcart:['猪蹄','牛腩']
+                }
+            })
+            .controller('c1', function ($scope, site) {
+                $scope.data1 = { msg: 'd1' };
+                $scope.data1 = site;
+            })
+            .controller('c2', function ($scope, site) {
+                $scope.data2 = { msg: 'd2' };
+                $scope.data2 = site;
+            })
+    </script>
+</body>
+</html>

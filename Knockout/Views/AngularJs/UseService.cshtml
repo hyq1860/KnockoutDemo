@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "UseService";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="c1">
+        <input type="text" ng-model="msg" />
+        <h1>{{msg}}</h1>
+        <h1>{{site}}</h1>
+        <h1>{{data.site+data.address}}</h1>
+        <h1>{{data.setAddress()}}</h1>
+        <h1>{{user.getName()}}</h1>
+    </div>
+
+<script type="text/javascript">
+    //service的形式
+    //value constant factory service
+
+
+    //作用域的问题
+    angular.module('app', [])
+        .value('realname', '张三')//可以改变
+        .value('realname','李四')
+        .constant('site', 'www.baidu.com')//不可以改变
+        .constant('site', 'www.google.com')
+        .factory('data',function() {
+            return {
+                site:'www.cheyipai.com',
+                address: '大屯',
+                setAddress:function() {
+                    this.address = "大屯路东";
+                    return this.address;
+                }
+            }
+        })//factory相当于service的复杂模式
+        .service('user',function() {
+            this.firstName = "肖";
+            this.lastName = "刚";
+            this.getName=function() {
+                return this.firstName + this.lastName;
+            }
+        })
+        .controller('c1', function ($scope, realname, site,data,user) {
+            $scope.msg = realname;
+            $scope.site = site;
+            $scope.data = data;
+            $scope.user = user;
+        })
+</script>
+</body>
+</html>
+
+
+
+

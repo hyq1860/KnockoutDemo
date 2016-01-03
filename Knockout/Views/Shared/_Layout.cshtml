@@ -2,14 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>@ViewBag.Title</title>
-    @*@Styles.Render("http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css")*@
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
     @*@Scripts.Render("~/bundles/modernizr")*@
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js")
-    @Scripts.Render("~/Scripts/jquery-ui.js")
+    
+    @*@Scripts.Render("http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js")*@
+    @*@Scripts.Render("~/Scripts/jquery-ui.js")*@
     @*<script src="~/Scripts/require.js" data-main="/Scripts/main" defer async="true"></script>*@
     @{
         var controlller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
@@ -17,14 +16,16 @@
         switch (controlller)
         {
             case "knockout":
+                @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/scripts/knockout-3.3.0.js");
                 @Scripts.Render("~/scripts/knockout.extension.js");
                 @Scripts.Render("~/scripts/knockout.mapping-latest.js");
                 @Scripts.Render("~/scripts/knockout-sortable.js");
 
-    
+
                 break;
             case "iscroll":
+                @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/Scripts/iscroll/iscroll-probe.js");
                 break;
             case "swiper":
@@ -38,8 +39,17 @@
                 <script src="~/Scripts/require.js" data-main="Scripts/main" defer async="true"></script>
                 @Scripts.Render("~/Scripts/text.js");
                 break;
+            case "bootstrap":
+                @Styles.Render("~/Content/bootstrap.min.css")
+                @Scripts.Render("~/scripts/bootstrap.min.js");
+                break;
+            case "angularjs":
+                @Styles.Render("~/Content/bootstrap.min.css")
+                @Scripts.Render("~/scripts/bootstrap.min.js");
+                @Scripts.Render("~/Scripts/angular.min.js")
+                break;
+            }
         }
-}
 </head>
 <body role="document">
     @RenderBody()
