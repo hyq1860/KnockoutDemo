@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "UseDirective";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <hello></hello>
+    <div a></div>
+    <div class="c"></div>
+    <div ng-controller="appc1">
+        <div enter="delete()">猛击我进入</div>
+    </div>
+    <script type="text/javascript">
+        //service的形式
+        //value constant factory service
+        var app = angular.module('app', []);
+        app.directive('hello', function () {
+            return {
+                restrict: 'E',//template
+                replace: true,//替换掉自定义的标签
+                template: '<div>angular</div>'
+            }
+        });
+
+        app.directive('a', function () {
+            return {
+                restrict: 'A',//属性
+                link: function () {
+                    //alert("我在这里");
+                    return "http://www.baidu.com";
+                }
+            }
+        });
+
+        app.directive('c', function () {
+            return {
+                restrict: 'C',//class
+                link: function () {
+                    //alert("我在这里");
+                    return "haha";
+                }
+            }
+        });
+
+        //注意 controller的$scope 必须有$符号
+        app.controller("appc1", function ($scope) {
+            $scope.loadMoreData = function () {
+                alert("加载数据");
+            }
+
+            $scope.delete=function() {
+                alert("删除数据");
+            }
+        });
+
+        //默认是属性??
+        app.directive('enter', function () {
+            return function (scope, element, attrs) {
+                element.bind('mouseenter', function () {
+                    //第一种调用方式
+                    //scope.loadMoreData();
+
+                    //第二种调用方式
+                    //scope.$apply('loadMoreData()');
+
+                    //第三种调用方式 更灵活
+                    console.log(attrs);
+                    scope.$apply(attrs.enter);
+                });
+            }
+        });
+
+        app.directive('food', function() {
+            return {
+                restrict: 'E',
+                controller: function ($scope) {
+                    $scope.foods = [];
+
+                    $scope.addApple=function() {
+                        $scope.foods.push('apple');
+                    }
+
+                    $scope.addOrange = function () {
+                        $scope.foods.push('orange');
+                    }
+
+                },
+                link:function(scope,element,attrs) {
+                    element.bind('mouseenter', function() {
+                        console.log(scope.foods);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

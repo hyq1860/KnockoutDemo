@@ -53,5 +53,10 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult UseDirective()
+        {
+            return View();
+        }
     }
 }

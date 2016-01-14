@@ -1191,6 +1191,7 @@
     <Content Include="Views\AngularJs\UseServiceShareDataInController.cshtml" />
     <Content Include="Views\AngularJs\Keyword.cshtml" />
     <Content Include="Views\AngularJs\UseHttp.cshtml" />
+    <Content Include="Views\AngularJs\UseDirective.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
