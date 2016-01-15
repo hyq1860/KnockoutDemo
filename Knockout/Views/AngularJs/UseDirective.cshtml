@@ -15,12 +15,18 @@
     @Scripts.Render("~/Scripts/angular.min.js")
 </head>
 <body ng-app="app">
-    <hello></hello>
-    <div a></div>
-    <div class="c"></div>
+    <hello></hello><br />
+    <div a></div><br />
+    <div class="c"></div><br />
     <div ng-controller="appc1">
-        <div enter="delete()">猛击我进入</div>
+        <div enter="delete()">猛击我进入</div><br />
+        <food>哈哈哈</food><br />
+
+        <food apple orange>hahahahaa</food><br />
     </div>
+    <br />
+    <div test>element的使用</div><br />
+    <hello1></hello1><br />
     <script type="text/javascript">
         //service的形式
         //value constant factory service
@@ -59,7 +65,7 @@
                 alert("加载数据");
             }
 
-            $scope.delete=function() {
+            $scope.delete = function () {
                 alert("删除数据");
             }
         });
@@ -81,24 +87,68 @@
             }
         });
 
-        app.directive('food', function() {
+        app.directive('food', function () {
             return {
                 restrict: 'E',
+                scope: {},
                 controller: function ($scope) {
                     $scope.foods = [];
 
-                    $scope.addApple=function() {
+                    this.addApple = function () {
                         $scope.foods.push('apple');
                     }
 
-                    $scope.addOrange = function () {
+                    this.addOrange = function () {
                         $scope.foods.push('orange');
                     }
 
                 },
-                link:function(scope,element,attrs) {
-                    element.bind('mouseenter', function() {
+                link: function (scope, element, attrs) {
+                    element.bind('mouseenter', function () {
                         console.log(scope.foods);
+                    });
+                }
+            }
+        });
+
+        app.directive('apple', function () {
+            return {
+                require: 'food',
+                link: function (scope, element, attrs, foodCtrl) {
+                    console.log(foodCtrl);
+                    foodCtrl.addApple();
+                }
+            }
+        });
+
+        app.directive('orange', function () {
+            return {
+                require: 'food',
+                link: function (scope, element, attrs, foodCtrl) {
+                    console.log(foodCtrl);
+                    foodCtrl.addApple();
+                }
+            }
+        });
+
+        app.directive('test', function () {
+            return function (scope, element, attrs) {
+                element.bind('click', function () {
+                    element.addClass("alert-box");
+                });
+            }
+        });
+
+        app.directive('hello1', function () {
+            return {
+                restrict: 'E',
+                template: '<input ng-model="txt"/>{{txt}}',
+                link:function(scope,element) {
+                    scope.$watch('txt', function (newVal) {
+                        console.log(newVal);
+                        if (newVal == 'error') {
+                            element.addClass('form-control');
+                        }
                     });
                 }
             }
