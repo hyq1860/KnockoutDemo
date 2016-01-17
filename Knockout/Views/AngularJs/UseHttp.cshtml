@@ -32,16 +32,31 @@
 
     //作用域的问题
     angular.module('app', [])
-        .controller('c1', function ($scope, $http) {
+        .controller('c1', function ($scope,$timeout, $http) {
             /*
             $http.get("http://www.baidu.com")
             .success(function(result) {
                     $scope.html = result;
             });
             */
+            var timeout;
             $scope.name = '';
-            //监视触发事件
-            $scope.$watch('name',function() {
+            //监视触发事件 监控
+            //$timeout延时执行
+            $scope.$watch('name', function (newName) {
+                if (newName) {
+                    console.log(timeout);
+                    if (timeout) {
+                        $timeout.cancel(timeout);
+                    }
+                    timeout = $timeout(function() {
+                        $http.get("http://www.baidu.com")
+                            .success(function (result) {
+                                console.log(result);
+                                //$scope.html = result;
+                            });
+                    }, 2000);
+                }
                 console.log($scope.name);
             });
 

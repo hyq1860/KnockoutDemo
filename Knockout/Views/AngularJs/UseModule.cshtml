@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "UseHttp";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="helloController">
+        <div>{{greeting.text}}</div>
+    </div>
+
+<script type="text/javascript">
+    //angular模块
+    var helloMudle = angular.module('helloAngular', []);
+    helloMudle.controller('helloController', ['$scope',function($scope) {
+        $scope.greeting = {
+            text:'hello'
+        };
+    }]);
+    //依赖模块
+    angular.module('app', ['helloAngular']);
+</script>
+</body>
+</html>
+
+
+
+
+

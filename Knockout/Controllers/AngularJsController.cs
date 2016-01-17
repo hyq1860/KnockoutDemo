@@ -58,5 +58,15 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult UseModule()
+        {
+            return View();
+        }
+
+        public ActionResult UseFilter()
+        {
+            return View();
+        }
     }
 }

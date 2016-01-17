@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "UseFilter";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+<div ng-controller="helloController">
+    <div>{{greeting.text}}</div>
+    @*{{ 刘德华的filer | customFilter}}<br />*@
+</div>
+
+<div>
+    <h1>filter的使用</h1>
+    {{1304375948024 | date}}<br/>
+    {{1304375948024 | date:"yyyy-MM-dd 我是伟大的分割线 hh:mm:ss"}}<br/>
+    {{1304375948024 | date:"yyyy-MM-dd hh:mm:ss"}}<br/>
+    @*{{刘德华的filer | customFilter}}<br />*@
+</div>
+
+<script type="text/javascript">
+    //$filter是用来数据格式化的专用服务
+    //内置了9个filter
+    //currency,date,json,lowercase,number,orderBy,uppercase
+    //filter可以嵌套使用 用管道符号|分隔
+    //filter是可以传递参数的
+    //用户可以自定义自己的filter
+
+
+    //angular定义模块
+    var helloMudle = angular.module('helloAngular', []);
+    helloMudle.controller('helloController', ['$scope', function ($scope) {
+        $scope.greeting = {
+            text:'hello'
+        };
+    }]);
+
+
+    //自定义fileter
+    var filterModule = angular.module("filterModule", []);
+    filterModule.filter('customFilter', function () {
+        return function (item) {
+            return "^_^ " + item + " ^_^";
+        }
+    });
+
+    //依赖模块
+    angular.module('app', ['helloAngular', 'filterModule']);
+
+    
+</script>
+</body>
+</html>
+
+
+
+
+
