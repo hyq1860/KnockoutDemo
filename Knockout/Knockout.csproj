@@ -1194,6 +1194,8 @@
     <Content Include="Views\AngularJs\UseDirective.cshtml" />
     <Content Include="Views\AngularJs\UseModule.cshtml" />
     <Content Include="Views\AngularJs\UseFilter.cshtml" />
+    <Content Include="Views\AngularJs\UseExpressions.cshtml" />
+    <Content Include="Views\AngularJs\UseProvider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

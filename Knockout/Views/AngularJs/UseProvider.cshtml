@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+</head>
+<body ng-app="app">
+
+<div ng-controller="appc1">
+    {{n}}<br/>
+    {{n2}}
+</div>
+    <script type="text/javascript">
+        //provider 可以为应用提供通用的服务，形式可以是常量，也可以是对象。
+        //比如我们在 controller 里注入进来的 $http, $scope 都可以认为是 provider。
+        //参考文档
+        //http://www.zhex.me/blog/2013/08/03/provider-factory-and-service-in-angularjs/
+
+        //http://ryanmorr.com/understanding-scope-and-context-in-javascript/
+
+        //定义provider
+        var app = angular.module('app', []);
+
+        //方法1
+        app.provider('tools', function () {
+            var self = this;
+            self.n = 666;
+            self.$get = function () {
+                return {
+                    n:self.n
+                };
+            }
+        });
+
+        //方法2:
+        app.provider('tools2', {
+            n: 3,
+            $get: function () {
+                var self = this;
+                console.log(self);
+                console.log(this);
+                return this.n;
+            }
+        });
+
+        app.controller("appc1", function ($scope, tools, tools2) {
+            console.log(tools);
+            console.log(tools2);
+            $scope.n = tools.n;
+            $scope.n2 = tools2;
+        });
+    </script>
+</body>
+</html>
+

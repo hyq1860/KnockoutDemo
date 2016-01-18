@@ -68,5 +68,15 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult UseExpressions()
+        {
+            return View();
+        }
+
+        public ActionResult UseProvider()
+        {
+            return View();
+        }
     }
 }

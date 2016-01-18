@@ -28,6 +28,7 @@
     <div test>element的使用</div><br />
     <hello1></hello1><br />
     <script type="text/javascript">
+        //Directive（指令）
         //service的形式
         //value constant factory service
         var app = angular.module('app', []);
@@ -143,7 +144,7 @@
             return {
                 restrict: 'E',
                 template: '<input ng-model="txt"/>{{txt}}',
-                link:function(scope,element) {
+                link: function (scope, element) {
                     scope.$watch('txt', function (newVal) {
                         console.log(newVal);
                         if (newVal == 'error') {

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "UseExpressions";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+</head>
+<body ng-app="app">
+
+    <h1>demo01</h1>
+    <span>
+        1+2={{1+2}}
+    </span>
+
+    <h1>demo02</h1>
+    <img ng-src="{{ 'h' + 'ead.png' }}" />
+    <script type="text/javascript">
+
+        //依赖模块
+        angular.module('app', []);
+    </script>
+</body>
+</html>
+

@@ -12,12 +12,12 @@
     <title>todolist</title>
     <meta charset="utf-8" />
     @Styles.Render("~/Content/bootstrap.min.css")
-    @Scripts.Render("~/Scripts/angular.min.js")
+    @Scripts.Render("~/Scripts/angular.js")
 </head>
 <body ng-app="app">
 <div ng-controller="helloController">
     <div>{{greeting.text}}</div>
-    @*{{ 刘德华的filer | customFilter}}<br />*@
+    {{ '刘德华的filer' | customFilter}}<br />
 </div>
 
 <div>
