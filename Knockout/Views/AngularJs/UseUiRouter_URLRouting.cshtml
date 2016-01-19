@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+</head>
+<body ng-app="app">
+    <a ui-sref="contacts">联系人</a>
+<div ui-view></div>
+<pre>
+      $state = {{$state.current.name}}
+      $stateParams = {{$stateParams}}
+      $state full url = {{ $state.$current.url.source }}
+</pre>
+    <script type="text/javascript">
+        //依赖模块
+        var app = angular.module('app', ['ui.router']);
+
+        app.config(function ($stateProvider, $urlRouterProvider) {
+            $stateProvider.state('contacts', {
+                    url: '/contacts',
+                    templateUrl: '/tpl/uirouter_urirouting/contacts.html',
+                    controller: function($scope) {
+                        console.log("111");
+                        $scope.data = {
+                            items: [
+                                { id: 1, name: '国美美' },
+                                { id: 2, name: '2美美' }
+                            ]
+                        };
+                    }
+                })
+                .state('contacts.detail', {
+                    url: '/:contactId',
+                    templateUrl: '/tpl/uirouter_urirouting/contacts-detail.html',
+                    controller:function() {
+                        console.log("详情");
+                    }
+                });
+        });
+
+        app.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+</head>
+<body ng-app="app">
+
+    <div ui-view></div>
+    <!-- We'll also add some navigation: -->
+    <a ui-sref="state1">State 1</a>
+    <a ui-sref="state2">State 2</a>
+
+
+    <script type="text/javascript">
+        //依赖模块
+        var app = angular.module('app', ['ui.router']);
+        app.config(function ($stateProvider, $urlRouterProvider) {
+            //
+            // For any unmatched url, redirect to /state1
+            $urlRouterProvider.otherwise("/state1");
+            //
+            // Now set up the states
+            $stateProvider
+              .state('state1', {
+                  url: "/state1",
+                  templateUrl: "/tpl/uirouter/state1.html"
+              })
+              .state('state1.list', {
+                  url: "/list",
+                  templateUrl: "/tpl/uirouter/state1.list.html",
+                  controller: function ($scope) {
+                      $scope.items = ["A", "List", "Of", "Items"];
+                  }
+              })
+              .state('state2', {
+                  url: "/state2",
+                  templateUrl: "/tpl/uirouter/state2.html"
+              })
+              .state('state2.list', {
+                  url: "/list",
+                  templateUrl: "/tpl/uirouter/state2.list.html",
+                  controller: function ($scope) {
+                      $scope.things = ["A", "Set", "Of", "Things"];
+                  }
+              });
+        });
+    </script>
+</body>
+</html>

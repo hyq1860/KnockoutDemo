@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+</head>
+<body ng-app="app">
+<a ui-sref="report">report报告</a>
+    <a ui-sref="detail">report全部</a>
+    <div ui-view="filters"></div>
+    <div ui-view="tabledata"></div>
+    <div ui-view="graph"></div>
+    <div ui-view></div>
+    <script type="text/javascript">
+        //依赖模块
+        var app = angular.module('app', ['ui.router']);
+        app.config(function ($stateProvider, $urlRouterProvider) {
+            
+            //
+            // Now set up the states
+            $stateProvider
+                .state('report', {
+                    views: {
+                        'filters': {
+                            templateUrl: '/tpl/Multiple_Named_Views/report-filters.html',
+                            controller: function ($scope) {
+                                $scope.Data = ['1'];
+                            },
+                            
+                        },
+                        'tabledata': {
+                            templateUrl: '/tpl/Multiple_Named_Views/report-table.html',
+                            controller: function ($scope) {
+                                $scope.Data = {
+                                    Items:[{id:1,name:'张三'}]
+                                };
+                            }
+                        },
+                        'graph': {
+                            templateUrl: '/tpl/Multiple_Named_Views/report-graph.html',
+                            controller: function ($scope) {
+                                $scope.Data = ['1'];
+                            }
+                        }
+                    },
+                    onEnter: function () {
+                        console.log("report enter");
+                    },
+                    onExit: function () {
+                        console.log("report exit");
+                    }
+
+                });
+            $stateProvider.state('detail', {
+                url: "/detail",
+                templateUrl: "/tpl/Multiple_Named_Views/detail.html",
+                controller:function($scope) {
+                    $scope.data= {
+                        items: [{ id: 1, name: "刘德华" }, { id: 2, name: "张学友" }]
+                    }
+                }
+            });
+            //
+            // For any unmatched url, redirect to /state1
+            $urlRouterProvider.otherwise("/report");
+        });
+
+        app.run(function() {
+            console.log("angular.run()执行了");
+        });
+    </script>
+</body>
+</html>

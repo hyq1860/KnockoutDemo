@@ -78,5 +78,27 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult UseUiRouter()
+        {
+            return View();
+        }
+
+        public ActionResult UseUiRouter_MultipleNamedViews()
+        {
+            return View();
+        }
+
+        public ActionResult UseUiRouter_URLRouting()
+        {
+            return View();
+        }
+
+        public ActionResult AngularExecuteOrder()
+        {
+            return View();
+        }
+
+        
     }
 }
