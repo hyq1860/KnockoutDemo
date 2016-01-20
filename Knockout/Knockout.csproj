@@ -1072,6 +1072,8 @@
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\text.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="SepcialDll\Newtonsoft.Json.dll" />
     <Content Include="SepcialDll\Newtonsoft.Json.xml" />
@@ -1079,6 +1081,8 @@
     <Content Include="tpl\Multiple_Named_Views\report-filters.html" />
     <Content Include="tpl\Multiple_Named_Views\report-graph.html" />
     <Content Include="tpl\Multiple_Named_Views\report-table.html" />
+    <Content Include="tpl\NestedViews\shows-detail.html" />
+    <Content Include="tpl\NestedViews\shows.html" />
     <Content Include="tpl\uirouter\state1.html" />
     <Content Include="tpl\uirouter\state1.list.html" />
     <Content Include="tpl\uirouter\state2.html" />
@@ -1212,6 +1216,8 @@
     <Content Include="Views\AngularJs\AngularExecuteOrder.cshtml" />
     <Content Include="Views\AngularJs\UseUiRouter_URLRouting.cshtml" />
     <Content Include="tpl\uirouter_urirouting\contacts-detail.html" />
+    <Content Include="Views\AngularJs\NestedViews.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

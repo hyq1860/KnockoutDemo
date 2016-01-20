@@ -1,8 +1,9 @@
 ﻿<div>
     <ul >
-        <li ng-repeat="item in data.items">
+        <li ng-repeat="item in data.items" ng-hide="showList">
             编号{{item.id}}
             名字<a ui-sref="contacts.detail({contactId:item.id})">{{item.name}}</a>
         </li>
     </ul>
 </div>
+<div ui-view></div>

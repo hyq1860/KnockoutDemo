@@ -99,6 +99,11 @@ namespace Knockout.Controllers
             return View();
         }
 
-        
+
+        public ActionResult NestedViews()
+        {
+            return View();
+        }
+
     }
 }
