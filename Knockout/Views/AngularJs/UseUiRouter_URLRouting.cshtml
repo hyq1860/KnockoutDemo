@@ -17,7 +17,7 @@
 </head>
 <body ng-app="app">
     <a ui-sref="contacts">联系人</a>
-    <div ui-view></div>
+    <div ui-view ></div>
 <pre>
       $state = {{$state.current.name}}
       $stateParams = {{$stateParams}}
@@ -30,6 +30,12 @@
         //注意不要写成ui-router
         var app = angular.module('app', ['ui.router']);
 
+        app.factory('contactsShareData', function() {
+            return {
+                HideList: true
+            }
+        });
+
         app.config(function ($stateProvider, $urlRouterProvider) {
             //For any unmatched url, redirect to /contacts
             //$urlRouterProvider.otherwise('/contacts');
@@ -37,18 +43,21 @@
             $stateProvider.state('contacts', {
                 url: '/contacts',
                 templateUrl: '/tpl/uirouter_urirouting/contacts.html',
-                controller: function ($scope, contactService) {
+                controller: function ($scope, contactService, contactsShareData) {
                     console.log("111");
                     $scope.data = contactService.contacts;
-                    $scope.showList = false;
                     console.log(contactService.contacts);
                 }
             })
                 .state('contacts.detail', {
                     url: '/:contactId',
                     templateUrl: '/tpl/uirouter_urirouting/contacts-detail.html',
-                    controller: function ($scope, $stateParams, contactService) {
+                    controller: function ($scope, $stateParams, contactService, contactsShareData) {
                         console.log($stateParams);
+                        console.log(contactsShareData);
+                        if (!contactsShareData.HideList) {
+                            contactsShareData.HideList = true;
+                        };
                         $scope.detail = contactService.find($stateParams.contactId);
                         console.log($scope.detail);
                     }

@@ -1,6 +1,6 @@
-﻿<div>
+﻿<div ng-hide="contactsShareData.HideList">
     <ul >
-        <li ng-repeat="item in data.items" ng-hide="showList">
+        <li ng-repeat="item in data.items" >
             编号{{item.id}}
             名字<a ui-sref="contacts.detail({contactId:item.id})">{{item.name}}</a>
         </li>

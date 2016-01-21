@@ -1218,6 +1218,8 @@
     <Content Include="tpl\uirouter_urirouting\contacts-detail.html" />
     <Content Include="Views\AngularJs\NestedViews.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\AngularJs\CommonDirective.cshtml" />
+    <Content Include="Views\AngularJs\NgRepeatFinishCallback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

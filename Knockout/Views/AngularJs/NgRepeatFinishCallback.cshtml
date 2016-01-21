@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "利用angular指令监听ng-repeat渲染完成后执行脚本";
+}
+
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+    @Scripts.Render("~/Scripts/underscore.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="TestController">
+        
+    </div>
+
+    <script type="text/javascript">
+        //http://www.funnyant.com/angularjs-ui-router/
+        //UI-Router: Why many developers don’t use AngularJS’s built-in router
+        //依赖模块
+        //注意不要写成ui-router
+        var app = angular.module('app');
+        app.controller('TestController', function ($scope) {
+                $scope.myHTML =
+                    'I am an <code>HTML</code>string with ' +
+                    '<a href="#">links!</a> and other <em>stuff</em>';
+            }
+        );
+        app.factory('contactsShareData', function () {
+            return {
+                HideList: false
+            }
+        });
+    </script>
+</body>
+</html>

@@ -105,5 +105,14 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult CommonDirective()
+        {
+            return View();
+        }
+
+        public ActionResult NgRepeatFinishCallback()
+        {
+            return View();
+        }
     }
 }
