@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "UseHttpInterceptors";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <a href="http://www.webdeveasy.com/interceptors-in-angularjs-and-useful-examples/">interceptors-in-angularjs-and-useful-examples</a>
+    <div ng-controller="c1">
+        <select>
+            <option ng-repeat="item in provinces" value="{{item.Id}}">{{item.Name}}</option>
+        </select>
+    </div>
+
+    <script type="text/javascript">
+   
+    //作用域的问题
+    var app=angular.module('app', [])
+        .controller('c1', function ($scope, $timeout, $http, addressService) {
+           
+            var timeout;
+            $scope.name = '';
+           
+            //省
+            $scope.provinces = [];
+            //console.log(addressService);
+            addressService.Provinces().then(function (result) {
+                console.log(result);
+                $scope.provinces = result.Data;
+            });
+
+        })
+    app.service('addressService', function ($http) {
+        return {
+            Provinces: function () {
+                var promise = $http.get("/AngularJs/HttpData?t=no", { t: 'no' })
+                           .then(function (response) {
+                               return response.data;
+                           });
+                return promise;
+            }
+        };
+    });
+    //注入$http
+    app.factory('authInterceptor', function ($q) {
+        return {
+            request:function(config){
+                config.headers = config.headers || {};
+                config.headers.Authorization = 'Bearer ';
+
+                return config;
+            },
+            response: function (response) {
+                var data = response.data;
+                if(data.Code=="-1")
+                {
+                    alert("没权限");
+                }
+                else {
+                    return response || $q.when(response);
+                }
+            }
+        }
+    });
+
+    app.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    }]);
+
+    </script>
+</body>
+</html>
+
+
+
+
+

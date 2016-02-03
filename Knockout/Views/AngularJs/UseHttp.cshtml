@@ -18,21 +18,21 @@
     <div ng-controller="c1">
         <input type="text" ng-model="name"/>
         <select>
-            <option ng-repeat="item in provinces" value="{{item.id}}">{{item.name}}</option>
+            <option ng-repeat="item in provinces" value="{{item.Id}}">{{item.Name}}</option>
         </select>
 
-        <select ng-change="selectChange()" ng-model="myOptions"
-                ng-options="value.id as value.label group by value.group for value in myOptions"></select>
+        @*<select ng-change="selectChange()" ng-model="myOptions"
+                ng-options="value.id as value.label group by value.group for value in myOptions"></select>*@
     </div>
 
     <script type="text/javascript">
     //service的形式
     //value constant factory service
-
+        //http://chariotsolutions.com/blog/post/angularjs-corner-using-promises-q-handle-asynchronous-calls/
 
     //作用域的问题
-    angular.module('app', [])
-        .controller('c1', function ($scope,$timeout, $http) {
+    var app=angular.module('app', [])
+        .controller('c1', function ($scope, $timeout, $http, addressService) {
             /*
             $http.get("http://www.baidu.com")
             .success(function(result) {
@@ -43,6 +43,7 @@
             $scope.name = '';
             //监视触发事件 监控
             //$timeout延时执行
+            /*
             $scope.$watch('name', function (newName) {
                 if (newName) {
                     console.log(timeout);
@@ -59,23 +60,32 @@
                 }
                 console.log($scope.name);
             });
-
+            */
             //省
-            $scope.provinces = [
-                { id: 1, name: '河南' },
-                { id: 2, name: '北京' }
-            ];
+            $scope.provinces = [];
+            //console.log(addressService);
+            addressService.Provinces().then(function (result) {
+                console.log(result);
+                //$scope.provinces = result;
+            });
+            /*
+            $http.get("/AngularJs/HttpData")
+                            .success(function (result) {
+                                $scope.provinces = result;
+                                //$scope.html = result;
+                            })*/
+
             //市
             $scope.cities = [
                 { id: 101, name: '信阳', pid: 1 },
                 { id: 201, name: '朝阳区', pid: 2 }
             ];
 
-            
+            /*
             $scope.$watch('provinces', function () {
                 console.log($scope.name);
             });
-
+            */
             var data = {
                 myOptions: [
                     {
@@ -101,6 +111,19 @@
                 console.log();
             }
         })
+    app.service('addressService', function ($http) {
+        return {
+            Provinces: function () {
+                var promise = $http.get("/AngularJs/HttpData")
+                           .then(function (response) {
+                               return response.data;
+                           }, function (response) {
+                               return response.data;
+                           });
+                return promise;
+            }
+        };
+    });
     </script>
 </body>
 </html>

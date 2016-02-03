@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "AngularJSEasyUI";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/lib/easyui/themes/default/easyui.css")
+    @Styles.Render("~/lib/easyui/themes/icon.css")
+    @Scripts.Render("~/lib/easyui/jquery.min.js")
+    @Scripts.Render("~/Scripts/angular.min.js")
+    @Scripts.Render("~/lib/easyui/jquery.easyui.min.js")
+</head>
+<body ng-app="app">
+
+    <div style="padding:3px 2px;border-bottom:1px solid #ccc">Compose Email</div>
+    <form id="ff" method="post" ng-controller="appCtrl">
+        <div>
+            <label for="name">Name:</label>
+            <input class="easyui-validatebox" ng-model="name" type="text" name="name" required="true"></input>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input class="easyui-validatebox" ng-model="email" type="text" name="email" required="true" validtype="email"></input>
+        </div>
+        <div>
+            <label for="subject">Subject:</label>
+            <input class="easyui-validatebox" ng-model="subject" type="text" name="subject" required="true"></input>
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea name="message" ng-model="message" style="height:60px;"></textarea>
+        </div>
+        <div>
+            <input type="button" value="Send" ng-click="sendEmail()"></input>
+        </div>
+    </form>
+
+
+    <div style="padding:3px 2px;border-bottom:1px solid #ccc">Email history</div>
+
+    <div id="patient_table" ng-controller="appCtrl">
+        <table id="emailhistory" class="easyui-datagrid" data-options="singleSelect:true,collapsible:true,data:{{tableItems}}" style="width:560px;height:400px">
+            <thead>
+                <tr>
+                    <th data-options="field:'name',width:'120'">Name</th>
+                    <th data-options="field:'email',width:'120'">Email</th>
+                    <th data-options="field:'subject',width:'120'">Subject</th>
+                    <th data-options="field:'message',width:'200',resizable:true">Message</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        angular.module('app', [])
+            .controller('appCtrl', function ($scope) {
+
+                $scope.name = "Sam";
+                $scope.email = "sam@gmail.com";
+                $scope.subject = "Vacations pics from India";
+                $scope.message = "Hi, I'll be uploading my vacations pics from India on my dropbox for you all.";
+
+                $scope.tableItems = [
+                    {
+                        "name": "Mike",
+                        "email": "mike@gmail.com",
+                        "subject": "Weekly reports mailed",
+                        "message": "Hi Mike, I have send you the weekly reports by mail. They'll be arriving soon."
+                    }];
+
+                $scope.sendEmail = function () {
+                    $scope.tableItems.push({ "name": $scope.name, "email": $scope.email, "subject": $scope.subject, "message": $scope.message });
+                    $('#emailhistory').datagrid('loadData', $scope.tableItems);
+                };
+
+            });
+    </script>
+</body>
+</html>

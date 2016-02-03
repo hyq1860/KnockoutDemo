@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "AngularJS_SmartTable01";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>smart-table</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/scripts/jquery-2.1.4.min.js")
+    @Scripts.Render("~/scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/angular.min.js")
+    @Scripts.Render("~/lib/smarttable/smart-table.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="appCtrl">
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>birth date</th>
+                    <th>balance</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rowCollection">
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate}}</td>
+                    <td>{{row.balance}}</td>
+                    <td>{{row.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script type="text/javascript">
+        var app = angular.module('app', ['smart-table']);
+
+        app.controller('appCtrl', function ($scope) {
+            $scope.rowCollection = [
+        { firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com' },
+        { firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com' },
+        { firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com' }
+            ];
+
+        });
+    </script>
+</body>
+</html>

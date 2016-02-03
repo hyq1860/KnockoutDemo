@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Knockout.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -52,6 +53,36 @@ namespace Knockout.Controllers
         public ActionResult UseHttp()
         {
             return View();
+        }
+
+        public class Province
+        {
+            public string Id { get; set; }
+
+            public string Name { get; set; }
+        }
+
+        public ActionResult HttpData(string t)
+        {
+            var result = new JsonResult();
+            result.JsonRequestBehavior=JsonRequestBehavior.AllowGet;
+            var data = new Result<List<Province>>();
+            data.Data = new List<Province>();
+            data.Data.Add(new Province { Id = "6", Name = "中国a股" });
+            data.Data.Add(new Province { Id = "7", Name = "中国港股" });
+            
+            //throw new Exception();
+            if(t=="no")
+            {
+                data.Code = "-1";
+                data.Message = "没有权限";
+            }
+            else
+            {
+                data.Code = "1";
+            }
+            result.Data = data;
+            return result;
         }
 
         public ActionResult UseDirective()
@@ -111,6 +142,31 @@ namespace Knockout.Controllers
         }
 
         public ActionResult NgRepeatFinishCallback()
+        {
+            return View();
+        }
+
+        public ActionResult UseHttpInterceptors()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJSEasyUI()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_ngGrid()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_SmartTable01()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_Timeout()
         {
             return View();
         }

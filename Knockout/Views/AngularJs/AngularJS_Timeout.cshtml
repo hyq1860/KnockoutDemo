@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "AngularJS_Timeout";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.min.js")
+</head>
+<body ng-app="app">
+    <div ng-controller="appc1">
+
+    </div>
+    <script type="text/javascript">
+
+        //作用域的问题
+        var app = angular.module('app', []);
+        app.controller('appc1', function ($scope, $timeout, $http) {
+            var timeout = $timeout(function () {
+                alert("2000毫秒后执行");
+                return "1"
+            }, 2000);
+
+            timeout.then(function (data) {
+                alert(data);
+            }, function (data) {
+                alert(data);
+            });
+        });
+
+
+    </script>
+</body>
+</html>
