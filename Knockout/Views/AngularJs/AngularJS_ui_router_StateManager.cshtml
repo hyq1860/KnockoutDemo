@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "AngularJS_ui_router_StateManager";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+    @Scripts.Render("~/Scripts/underscore.js")
+</head>
+<body>
+
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+
+            var app = angular.module('app', []);
+            app.controller('uirouter.URLRoutingController', function ($scope) {
+
+
+            });
+            app.config(function ($stateProvider, $urlRouterProvider) {
+                $stateProvider.state('contacts', {
+                    url: '/contacts',
+                    template:'<h1>联系方式：林志玲</h1>'
+                });
+            });
+            //angular.bootstrap(element, [modules], [config]);
+            /*第一个参数element:是绑定ng-app的dom元素；
+            modules：绑定的模块名字
+            config：附加的配置*/
+            angular.bootstrap(document, ['app']);
+        })();
+    </script>
+</body>
+</html>

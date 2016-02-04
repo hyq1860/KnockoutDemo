@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "AngularJS_ngOption";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+    @Scripts.Render("~/Scripts/underscore.js")
+</head>
+<body ng-app="app">
+<div ng-controller="DropDownListController">
+    <div class="row">
+        选择的项：{{currentSimpleData}}
+        <select class="form-control" ng-model="currentSimpleData" ng-options="item for item in simpleData">
+        </select>
+    </div>
+
+    <div class="row">
+        选择的项：{{currentComplexData.name}} {{currentComplexData.id}}
+        <select class="form-control" ng-model="currentComplexData" ng-options="item.name for item in complexData">
+
+        </select>
+
+        <select class="form-control" ng-model="currentComplexData" ng-options="item.name group by item.type for item in complexData">
+            
+        </select>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function() {
+        'use strict';
+
+        angular
+            .module('app', [])
+            .controller('DropDownListController', function ($scope) {
+                //简单对象
+                $scope.simpleData = ['大涨', '暴涨', '放量暴涨'];
+                $scope.currentSimpleData = "放量暴涨";
+
+                //复杂对象
+                $scope.complexData = [{ id: '000002', name: '万科A', type: '深圳' }, { id: '601933', name: '永辉超市', type: '上海' }];
+                $scope.currentComplexData = $scope.complexData[0];
+                
+            });
+    })();
+</script>
+</body>
+</html>
+

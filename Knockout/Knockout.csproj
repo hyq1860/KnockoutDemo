@@ -165,6 +165,7 @@
     <Compile Include="Controllers\PhonoSwipeController.cs" />
     <Compile Include="Controllers\RequireController.cs" />
     <Compile Include="Controllers\SwiperController.cs" />
+    <Compile Include="Controllers\UnderscoreController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1919,9 +1920,17 @@
     <Content Include="Views\AngularJs\AngularJS_ngGrid.cshtml" />
     <Content Include="Views\AngularJs\AngularJS_SmartTable01.cshtml" />
     <Content Include="Views\AngularJs\AngularJS_Timeout.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_PageLikeGoogle.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_ngOption.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_JS_Set_App.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_Form.cshtml" />
+    <Content Include="Views\Underscore\Index.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_ui_router_URL_Routing.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_ui_router_StateManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ui-router-guide-templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

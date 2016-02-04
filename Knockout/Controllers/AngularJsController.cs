@@ -125,6 +125,16 @@ namespace Knockout.Controllers
             return View();
         }
 
+        public ActionResult AngularJS_ui_router_StateManager()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_ui_router_URL_Routing()
+        {
+            return View();
+        }
+
         public ActionResult AngularExecuteOrder()
         {
             return View();
@@ -167,6 +177,26 @@ namespace Knockout.Controllers
         }
 
         public ActionResult AngularJS_Timeout()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_PageLikeGoogle()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_ngOption()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_JS_Set_App()
+        {
+            return View();
+        }
+
+        public ActionResult AngularJS_Form()
         {
             return View();
         }
