@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "AngularJS_NestedController";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<!--边界-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>todolist</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-ui-router.js")
+    @Scripts.Render("~/Scripts/underscore.js")
+</head>
+<body ng-app="app">
+
+    https://github.com/johnpapa/angular-styleguide 最佳实践
+//http://fdietz.github.io/recipes-with-angular-js/ 不错的angular教程
+<div ng-controller="c1 as a">
+
+    <div ng-controller="c2 as b">
+        {{message}}
+        {{$parent.message}}
+    </div>
+</div>
+<script type="text/javascript">
+    //http://www.funnyant.com/angularjs-ui-router/
+    //UI-Router: Why many developers don’t use AngularJS’s built-in router
+    //依赖模块
+    //注意不要写成ui-router
+    var app = angular.module('app', []);
+
+    app.controller("c1", function($scope) {
+        //$scope.message = "我是controller c1的消息";
+    });
+    app.controller("c2", function($scope) {
+        $scope.message = "我是controller c2的消息";
+    });
+</script>
+</body>
+</html>
+

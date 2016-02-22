@@ -1927,6 +1927,7 @@
     <Content Include="Views\Underscore\Index.cshtml" />
     <Content Include="Views\AngularJs\AngularJS_ui_router_URL_Routing.cshtml" />
     <Content Include="Views\AngularJs\AngularJS_ui_router_StateManager.cshtml" />
+    <Content Include="Views\AngularJs\AngularJS_NestedController.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

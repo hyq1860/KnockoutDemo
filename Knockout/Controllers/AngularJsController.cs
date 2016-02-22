@@ -200,5 +200,10 @@ namespace Knockout.Controllers
         {
             return View();
         }
+
+        public ActionResult AngularJS_NestedController()
+        {
+            return View();
+        }
     }
 }
